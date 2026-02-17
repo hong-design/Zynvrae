@@ -1,96 +1,490 @@
-/* ========= 棱銘｜Zynvrae 官方網站樣式表 ========= */
+﻿:root {
+  --bg: #f4f7fb;
+  --surface: #ffffff;
+  --surface-alt: #f7f9fc;
+  --ink: #0f172a;
+  --muted: #4b5563;
+  --line: #dbe2ea;
+  --brand: #0b3a82;
+  --brand-strong: #072a60;
+  --brand-soft: #eaf1ff;
+  --accent: #0ea5e9;
+  --ok: #0f766e;
+  --maxw: 1160px;
+  --radius: 14px;
+  --shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
+}
 
-/* 設定網頁基本樣式 */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  background: linear-gradient(to right, #f9fafb, #e6ecf2); /* 背景使用柔和漸層，提升質感 */
-  font-family: 'Noto Sans TC', sans-serif; /* 使用適合中文閱讀的字體 */
-  margin: 0; /* 移除瀏覽器預設邊距 */
-  padding: 2rem; /* 頁面左右間距設為 2rem，避免內容貼邊 */
-  color: #1f2937; /* 使用深灰藍文字色，視覺沉穩 */
-  text-align: center; /* 所有文字置中對齊 */
+  margin: 0;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+  color: var(--ink);
+  line-height: 1.72;
+  background:
+    radial-gradient(1000px 560px at 88% -5%, #dbeafe 0%, rgba(219, 234, 254, 0) 62%),
+    radial-gradient(900px 520px at -8% 8%, #e0e7ff 0%, rgba(224, 231, 255, 0) 56%),
+    var(--bg);
 }
 
-/* 網站主標題樣式 */
-.title {
-  font-size: 2.5rem; /* 設定主標題大小 */
-  font-weight: 700; /* 粗體字增加辨識度 */
-  color: #111827; /* 使用略深色字強化主標題 */
-  margin-bottom: 0.5rem; /* 與副標題間保留間距 */
+a {
+  color: var(--brand);
 }
 
-/* 網站副標題樣式 */
-.subtitle {
-  font-size: 1.25rem; /* 副標題略小於主標題 */
-  color: #374151; /* 使用灰藍色，讓層級更清楚 */
-  margin-bottom: 2rem; /* 與下方內容保留間距 */
+img {
+  max-width: 100%;
+  display: block;
 }
 
-/* 區塊標題樣式 */
-.section-title {
-  font-size: 1.5rem; /* 每區段標題大小 */
-  font-weight: 700; /* 加粗提升視覺層級 */
-  margin-top: 3rem; /* 與前方區塊留出間距 */
-  margin-bottom: 1rem; /* 與內文段落留出間距 */
-  color: #2563eb; /* 使用品牌主色（藍色）強化識別 */
+.site-wrap {
+  width: min(var(--maxw), 92vw);
+  margin: 0 auto;
+  padding-bottom: 52px;
 }
 
-/* 內文字內容樣式（共用） */
-.content {
-  font-size: 1.05rem; /* 文字略大於預設，更易閱讀 */
-  margin-bottom: 1.5rem; /* 區塊下方間距 */
-  line-height: 1.8; /* 行高設定提升可讀性 */
-  background-color: #ffffffa4; /* 半透明白背景，加強區塊辨識 */
-  padding: 1rem; /* 內距增加閱讀空間 */
-  border-radius: 0.5rem; /* 圓角柔化視覺 */
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04); /* 淡陰影增加立體感 */
-  animation: fadeIn 0.8s ease-out both; /* 套用淡入動畫提升質感 */
-  transition: transform 0.3s ease; /* 鼠標懸停動畫過渡 */
+.site-header {
+  position: sticky;
+  top: 10px;
+  z-index: 50;
+  margin-top: 14px;
 }
 
-/* 滑鼠懸停時內容區塊上浮效果 */
-.content:hover {
-  transform: translateY(-2px); /* 向上移動 2px 增加互動感 */
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(8px);
 }
 
-/* 頁尾區塊樣式 */
-footer {
-  margin-top: 4rem; /* 與主要內容區隔開 */
-  padding-top: 2rem; /* 上內距 */
-  border-top: 1px solid #d1d5db; /* 加上淡灰分隔線 */
-  color: #6b7280; /* 淺灰文字色 */
-  font-size: 0.9rem; /* 字體稍微縮小 */
+.brand {
+  text-decoration: none;
+  color: var(--brand-strong);
+  font-size: 1rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
 }
 
-/* 頁尾版權文字樣式 */
-.footer-text {
-  margin-bottom: 0.5rem; /* 與連結區塊間距 */
+.nav-toggle {
+  display: none;
+  margin-left: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  width: 40px;
+  height: 36px;
+  background: #fff;
+  font-size: 1.15rem;
+  cursor: pointer;
 }
 
-/* 頁尾連結區塊容器 */
-.footer-links {
-  display: flex; /* 使用 flex 排版 */
-  justify-content: center; /* 水平置中 */
-  gap: 1.5rem; /* 連結間保留間距 */
-  flex-wrap: wrap; /* 寬度不足時自動換行 */
+.nav {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-/* 每個頁尾連結樣式 */
-.link-item a {
-  color: #2563eb; /* 使用品牌藍色 */
-  text-decoration: none; /* 移除底線 */
-}
-.link-item a:hover {
-  text-decoration: underline; /* 滑鼠懸停時顯示底線 */
-}
-
-/* 動畫：進入時淡入淡出效果 */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); } /* 起始為透明且往下 */
-  to { opacity: 1; transform: translateY(0); } /* 結束為正常顯示 */
+.nav a {
+  text-decoration: none;
+  color: #1f2937;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  padding: 8px 10px;
 }
 
-/* 動畫：彈出用的縮放淡入效果 */
-@keyframes popup-fade {
-  from { opacity: 0; transform: scale(0.95); } /* 起始為縮小透明 */
-  to { opacity: 1; transform: scale(1); } /* 結束為正常大小透明度 */
+.nav a:hover,
+.nav a.active {
+  color: var(--brand);
+  background: var(--brand-soft);
+  border-color: #c9d8ff;
+}
+
+.main {
+  margin-top: 18px;
+}
+
+.hero {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: linear-gradient(140deg, #ffffff, #f8fbff);
+  padding: clamp(24px, 4.5vw, 42px);
+  box-shadow: var(--shadow);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 22px;
+}
+
+.hero-kicker {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  color: var(--brand);
+}
+
+.hero h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.18;
+}
+
+.hero p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.03rem;
+}
+
+.hero-actions {
+  margin-top: 18px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.metric-wrap {
+  display: grid;
+  gap: 10px;
+}
+
+.metric {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px;
+}
+
+.metric strong {
+  display: block;
+  color: var(--brand-strong);
+  font-size: 1.26rem;
+}
+
+.metric span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.logo-strip {
+  margin-top: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  padding: 12px;
+}
+
+.logo-strip p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.logo-item {
+  border: 1px dashed #c8d4e3;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  color: #607085;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: var(--surface-alt);
+}
+
+.section {
+  margin-top: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  padding: clamp(18px, 2.8vw, 28px);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  margin: 0;
+  font-size: clamp(1.3rem, 2.4vw, 1.95rem);
+  line-height: 1.28;
+}
+
+.section-note {
+  margin: 0;
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  padding: 18px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+}
+
+.card p,
+.card li,
+.section p,
+.section li,
+label,
+small {
+  color: var(--muted);
+}
+
+.service-card {
+  grid-column: span 6;
+}
+
+.process-card {
+  grid-column: span 3;
+}
+
+.case-card {
+  grid-column: span 6;
+}
+
+.pillar-card {
+  grid-column: span 4;
+}
+
+.case-tag {
+  display: inline-block;
+  border: 1px solid #cde0ff;
+  background: #eef4ff;
+  color: var(--brand);
+  border-radius: 999px;
+  padding: 4px 9px;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.quote {
+  margin: 8px 0 0;
+  color: #1e3a5f;
+  font-weight: 700;
+}
+
+.highlight {
+  border-color: #bcd6ff;
+  background: linear-gradient(140deg, #f8fbff, #f2f7ff);
+}
+
+.faq details {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 10px 12px;
+}
+
+.faq details + details {
+  margin-top: 10px;
+}
+
+.faq summary {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  padding: 11px 16px;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(120deg, var(--brand), var(--brand-strong));
+}
+
+.btn-secondary {
+  color: var(--brand);
+  background: #eaf1ff;
+}
+
+.btn-accent {
+  color: #fff;
+  background: linear-gradient(120deg, #0891b2, var(--accent));
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field.full {
+  grid-column: 1 / -1;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid #cad7e7;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: 2px solid #bfdbfe;
+  border-color: #93c5fd;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.form-status {
+  margin-top: 8px;
+  color: var(--ok);
+  font-size: 0.94rem;
+}
+
+.site-footer {
+  margin-top: 22px;
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  color: #5b6b7c;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.reveal.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 980px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .service-card,
+  .process-card,
+  .case-card,
+  .pillar-card {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-wrap {
+    width: min(var(--maxw), 95vw);
+  }
+
+  .topbar {
+    flex-wrap: wrap;
+  }
+
+  .nav-toggle {
+    display: inline-block;
+  }
+
+  .nav {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav.open {
+    display: flex;
+  }
+
+  .nav a {
+    border: 1px solid var(--line);
+    text-align: center;
+  }
+
+  .logo-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .service-card,
+  .process-card,
+  .case-card,
+  .pillar-card {
+    grid-column: span 12;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .site-footer {
+    flex-direction: column;
+  }
 }
