@@ -1,15 +1,11 @@
 ﻿:root {
   --bg: #f4f7fb;
-  --surface: #ffffff;
-  --surface-alt: #f7f9fc;
   --ink: #0f172a;
   --muted: #4b5563;
   --line: #dbe2ea;
   --brand: #0b3a82;
   --brand-strong: #072a60;
   --brand-soft: #eaf1ff;
-  --accent: #0ea5e9;
-  --ok: #0f766e;
   --maxw: 1160px;
   --radius: 14px;
   --shadow: 0 12px 30px rgba(15, 23, 42, 0.1);
@@ -36,11 +32,6 @@ body {
 
 a {
   color: var(--brand);
-}
-
-img {
-  max-width: 100%;
-  display: block;
 }
 
 .site-wrap {
@@ -181,37 +172,6 @@ img {
   font-size: 0.92rem;
 }
 
-.logo-strip {
-  margin-top: 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--surface);
-  padding: 12px;
-}
-
-.logo-strip p {
-  margin: 0 0 8px;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.logo-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.logo-item {
-  border: 1px dashed #c8d4e3;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  color: #607085;
-  font-weight: 700;
-  font-size: 0.9rem;
-  background: var(--surface-alt);
-}
-
 .section {
   margin-top: 16px;
   border: 1px solid var(--line);
@@ -260,9 +220,7 @@ img {
 .card p,
 .card li,
 .section p,
-.section li,
-label,
-small {
+.section li {
   color: var(--muted);
 }
 
@@ -274,51 +232,9 @@ small {
   grid-column: span 3;
 }
 
-.case-card {
-  grid-column: span 6;
-}
-
-.pillar-card {
-  grid-column: span 4;
-}
-
-.case-tag {
-  display: inline-block;
-  border: 1px solid #cde0ff;
-  background: #eef4ff;
-  color: var(--brand);
-  border-radius: 999px;
-  padding: 4px 9px;
-  font-size: 0.76rem;
-  font-weight: 800;
-  letter-spacing: 0.04em;
-}
-
-.quote {
-  margin: 8px 0 0;
-  color: #1e3a5f;
-  font-weight: 700;
-}
-
 .highlight {
   border-color: #bcd6ff;
   background: linear-gradient(140deg, #f8fbff, #f2f7ff);
-}
-
-.faq details {
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  background: #fff;
-  padding: 10px 12px;
-}
-
-.faq details + details {
-  margin-top: 10px;
-}
-
-.faq summary {
-  cursor: pointer;
-  font-weight: 800;
 }
 
 .btn {
@@ -344,62 +260,6 @@ small {
   background: #eaf1ff;
 }
 
-.btn-accent {
-  color: #fff;
-  background: linear-gradient(120deg, #0891b2, var(--accent));
-}
-
-.form-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-}
-
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.field.full {
-  grid-column: 1 / -1;
-}
-
-label {
-  font-size: 0.9rem;
-  font-weight: 700;
-}
-
-input,
-select,
-textarea {
-  width: 100%;
-  border: 1px solid #cad7e7;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font: inherit;
-  color: var(--ink);
-  background: #fff;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
-  outline: 2px solid #bfdbfe;
-  border-color: #93c5fd;
-}
-
-textarea {
-  min-height: 110px;
-  resize: vertical;
-}
-
-.form-status {
-  margin-top: 8px;
-  color: var(--ok);
-  font-size: 0.94rem;
-}
-
 .site-footer {
   margin-top: 22px;
   border-top: 1px solid var(--line);
@@ -410,6 +270,27 @@ textarea {
   justify-content: space-between;
   gap: 10px;
   flex-wrap: wrap;
+}
+
+.talk-panel {
+  padding: 0;
+  overflow: hidden;
+}
+
+.talk-panel-head {
+  padding: 18px 22px 0;
+}
+
+.talk-panel .section-note a {
+  font-weight: 700;
+}
+
+.talk-frame {
+  width: 100%;
+  height: min(86vh, 920px);
+  border: 0;
+  display: block;
+  background: #fff;
 }
 
 .reveal {
@@ -428,14 +309,8 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .logo-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .service-card,
-  .process-card,
-  .case-card,
-  .pillar-card {
+  .process-card {
     grid-column: span 6;
   }
 }
@@ -469,22 +344,16 @@ textarea {
     text-align: center;
   }
 
-  .logo-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .service-card,
-  .process-card,
-  .case-card,
-  .pillar-card {
+  .process-card {
     grid-column: span 12;
-  }
-
-  .form-grid {
-    grid-template-columns: 1fr;
   }
 
   .site-footer {
     flex-direction: column;
+  }
+
+  .talk-frame {
+    height: min(82vh, 820px);
   }
 }
