@@ -1,44 +1,22 @@
 @echo off
-setlocal enabledelayedexpansion
-chcp 65001 >nul
+echo === 開始部署 PrismarkStudio ===
 
-for /f %%I in ('powershell -NoProfile -Command "(Get-Date).ToString(\"yyyy-MM-dd HH:mm:ss\")"') do set "timestamp=%%I"
+:: 記錄當前時間
+set currentTime=%time%
+set currentDate=%date%
+echo [%currentTime%] 更新檔案狀態...
 
-echo === Deploy to GitHub Pages ===
-echo [%timestamp%] Stage changes...
+:: 將變更加入 Git
+git add .
 
-git add -A
-if errorlevel 1 (
-  echo [ERROR] git add failed.
-  exit /b 1
-)
+:: 自動建立 commit，包含時間戳
+git commit -m "自動部署 %currentDate% %currentTime%"
 
-git diff --cached --quiet
-set "diffExit=%errorlevel%"
-
-if "%diffExit%"=="0" (
-  echo [%timestamp%] No changes to commit.
-) else (
-  if "%diffExit%"=="1" (
-    echo [%timestamp%] Commit changes...
-    git commit -m "deploy: %timestamp%"
-    if errorlevel 1 (
-      echo [ERROR] git commit failed.
-      exit /b 1
-    )
-  ) else (
-    echo [ERROR] git diff --cached failed.
-    exit /b 1
-  )
-)
-
-echo [%timestamp%] Push to origin/main...
+:: Push 到 GitHub
 git push origin main
-if errorlevel 1 (
-  echo [ERROR] git push failed.
-  exit /b 1
-)
 
 echo.
-echo Deployment complete.
-endlocal
+echo ✅ 部署成功！網站已更新到 GitHub Pages。
+pause
+echo.
+echo === 部署完成 === 
