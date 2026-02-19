@@ -2,12 +2,25 @@
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav');
   const siteHeader = document.querySelector('.site-header');
+  const scrollProgressBar = document.querySelector('.scroll-progress-bar');
 
   if (siteHeader) {
     let lastY = window.scrollY;
     let ticking = false;
     const minScrollY = 80;
     const threshold = 6;
+    const docEl = document.documentElement;
+
+    const updateScrollProgress = function () {
+      if (!scrollProgressBar) {
+        return;
+      }
+
+      const maxScroll = docEl.scrollHeight - window.innerHeight;
+      const ratio = maxScroll > 0 ? window.scrollY / maxScroll : 0;
+      const clamped = Math.max(0, Math.min(1, ratio));
+      scrollProgressBar.style.transform = 'scaleX(' + clamped + ')';
+    };
 
     const updateHeaderOnScroll = function () {
       const currentY = window.scrollY;
@@ -23,8 +36,11 @@
       }
 
       lastY = currentY;
+      updateScrollProgress();
       ticking = false;
     };
+
+    updateScrollProgress();
 
     window.addEventListener(
       'scroll',
@@ -37,6 +53,8 @@
       },
       { passive: true }
     );
+
+    window.addEventListener('resize', updateScrollProgress);
   }
 
   if (navToggle && nav) {
