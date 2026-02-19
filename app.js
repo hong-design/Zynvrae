@@ -1,12 +1,52 @@
 (function () {
   const navToggle = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.nav');
+  const siteHeader = document.querySelector('.site-header');
+
+  if (siteHeader) {
+    let lastY = window.scrollY;
+    let ticking = false;
+    const minScrollY = 80;
+    const threshold = 6;
+
+    const updateHeaderOnScroll = function () {
+      const currentY = window.scrollY;
+      const deltaY = currentY - lastY;
+      const isMenuOpen = Boolean(nav && nav.classList.contains('open'));
+
+      if (currentY <= minScrollY || isMenuOpen) {
+        siteHeader.classList.remove('header-hidden');
+      } else if (deltaY > threshold) {
+        siteHeader.classList.add('header-hidden');
+      } else if (deltaY < -threshold) {
+        siteHeader.classList.remove('header-hidden');
+      }
+
+      lastY = currentY;
+      ticking = false;
+    };
+
+    window.addEventListener(
+      'scroll',
+      function () {
+        if (ticking) {
+          return;
+        }
+        ticking = true;
+        window.requestAnimationFrame(updateHeaderOnScroll);
+      },
+      { passive: true }
+    );
+  }
 
   if (navToggle && nav) {
     const setMenuState = function (isOpen) {
       nav.classList.toggle('open', isOpen);
       navToggle.setAttribute('aria-expanded', String(isOpen));
       navToggle.textContent = isOpen ? '\u2715' : '\u2630';
+      if (isOpen && siteHeader) {
+        siteHeader.classList.remove('header-hidden');
+      }
     };
 
     navToggle.addEventListener('click', function () {
