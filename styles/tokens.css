@@ -1,0 +1,38 @@
+﻿:root {
+  color-scheme: dark;
+  --bg: 220 18% 6%;
+  --surface: 220 16% 10%;
+  --surface-soft: 220 14% 13%;
+  --surface-strong: 220 15% 16%;
+  --text: 220 20% 96%;
+  --muted: 220 10% 67%;
+  --muted-strong: 220 11% 78%;
+  --border: 220 12% 24%;
+  --accent: 198 70% 63%;
+  --accent-strong: 198 80% 56%;
+  --success: 154 42% 45%;
+  --warning: 39 90% 56%;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-soft: 0 20px 40px rgba(0, 0, 0, 0.2);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.22);
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+  --bg: 210 20% 98%;
+  --surface: 210 18% 100%;
+  --surface-soft: 210 20% 97%;
+  --surface-strong: 210 18% 94%;
+  --text: 222 22% 10%;
+  --muted: 222 10% 40%;
+  --muted-strong: 222 12% 30%;
+  --border: 220 14% 84%;
+  --accent: 202 62% 46%;
+  --accent-strong: 202 68% 40%;
+  --success: 158 48% 34%;
+  --warning: 36 82% 44%;
+  --shadow-soft: 0 20px 50px rgba(9, 15, 24, 0.09);
+  --shadow-card: 0 8px 22px rgba(10, 20, 36, 0.08);
+}
