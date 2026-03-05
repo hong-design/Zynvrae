@@ -1,8 +1,8 @@
 ﻿import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { Card } from "@/components/Card";
+import { Card } from "@/components/ui/Card";
 import { Hero } from "@/components/Hero";
-import { Section } from "@/components/Section";
+import { Section } from "@/components/ui/Section";
 import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 

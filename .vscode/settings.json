@@ -1,3 +1,18 @@
 {
-    "liveServer.settings.port": 5502
+  "chatgpt.openOnStartup": false,
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "files.exclude": {
+    "**/.next": true,
+    "**/out": true,
+    "**/_next": true
+  },
+  "search.exclude": {
+    "**/.next": true,
+    "**/out": true,
+    "**/_next": true
+  }
 }

@@ -17,6 +17,8 @@ npm i
 npm run dev
 ```
 
+預覽網址：`http://localhost:3000`
+
 ## Build
 
 ```bash
@@ -30,15 +32,35 @@ npm run start
 - `app/page.tsx`
 - `components/Navbar.tsx`
 - `components/Hero.tsx`
-- `components/Section.tsx`
-- `components/Card.tsx`
-- `components/Divider.tsx`
 - `components/GlowBG.tsx`
 - `components/ProgressBar.tsx`
 - `components/ThemeToggle.tsx`
+- `components/layout/Footer.tsx`
+- `components/ui/Card.tsx`
+- `components/ui/Section.tsx`
 - `styles/globals.css`
 - `styles/tokens.css`
 - `tailwind.config.js`
+
+## 常見修改位置
+
+- 首頁文案/區塊：`app/page.tsx`
+- 導覽列：`components/Navbar.tsx`
+- Hero 視覺：`components/Hero.tsx`
+- Footer：`components/layout/Footer.tsx`
+- 導覽項目文字：`lib/navigation.ts`
+- 色票與字級 token：`styles/tokens.css`
+- 全站效果（噪點、focus、divider）：`styles/globals.css`
+
+## Deploy
+
+Windows 可直接執行：
+
+```bat
+deploy.bat
+```
+
+流程包含：`npm run build` -> `git add/commit` -> `git pull --rebase` -> `git push`
 
 ## UI Details
 
