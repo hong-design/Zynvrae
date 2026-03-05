@@ -22,7 +22,7 @@ export function Hero() {
   const animate = canAnimate ? { opacity: 1, y: 0 } : undefined;
 
   return (
-    <section className="section-space relative overflow-x-clip pb-[96px] pt-[80px] md:pt-[96px]">
+    <section className="section-space relative overflow-visible pb-[96px] pt-[80px] md:pt-[96px]">
       <GlowBG />
 
       <Container>

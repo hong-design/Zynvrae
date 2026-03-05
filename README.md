@@ -32,6 +32,7 @@ npm run start
 - `app/page.tsx`
 - `components/Navbar.tsx`
 - `components/Hero.tsx`
+- `components/site/PageHero.tsx`
 - `components/GlowBG.tsx`
 - `components/ProgressBar.tsx`
 - `components/ThemeToggle.tsx`
@@ -47,6 +48,8 @@ npm run start
 - 首頁文案/區塊：`app/page.tsx`
 - 導覽列：`components/Navbar.tsx`
 - Hero 視覺：`components/Hero.tsx`
+- 內頁 Hero 視覺：`components/site/PageHero.tsx`
+- 全站光暈層：`components/GlowBG.tsx`
 - Footer：`components/layout/Footer.tsx`
 - 導覽項目文字：`lib/navigation.ts`
 - 色票與字級 token：`styles/tokens.css`
@@ -57,10 +60,16 @@ npm run start
 Windows 可直接執行：
 
 ```bat
-deploy.bat
+.\deploy.bat
 ```
 
-流程包含：`npm run build` -> `git add/commit` -> `git pull --rebase` -> `git push`
+若 PowerShell 無法執行，改用：
+
+```bat
+cmd /c deploy.bat
+```
+
+流程包含：`git pull --rebase --autostash` -> `npm run build` -> 同步 `out/*` 到 root -> `git add/commit` -> `git push`
 
 ## UI Details
 
