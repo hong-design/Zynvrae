@@ -3,6 +3,7 @@ import { Inter, Noto_Sans_TC } from "next/font/google";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { defaultKeywords, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -23,9 +24,7 @@ const themeInitScript = `(() => {
   try {
     const key = "zynvrae-theme";
     const stored = window.localStorage.getItem(key);
-    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
-    const theme = stored === "light" || stored === "dark" ? stored : "dark";
-    document.documentElement.dataset.theme = theme || (prefersLight ? "light" : "dark");
+    document.documentElement.dataset.theme = stored === "light" ? "light" : "dark";
   } catch {
     document.documentElement.dataset.theme = "dark";
   }
@@ -34,7 +33,7 @@ const themeInitScript = `(() => {
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: "Zynvrae | 平台型數位產品公司",
+    default: "Zynvrae | 平台型數位平台開發",
     template: "%s | Zynvrae"
   },
   description: siteConfig.description,
@@ -47,7 +46,7 @@ export const metadata: Metadata = {
     locale: "zh_TW",
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: "Zynvrae | 平台型數位產品公司",
+    title: "Zynvrae | 平台型數位平台開發",
     description: siteConfig.description,
     images: [
       {
@@ -60,7 +59,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Zynvrae | 平台型數位產品公司",
+    title: "Zynvrae | 平台型數位平台開發",
     description: siteConfig.description,
     images: [siteConfig.ogImage]
   },
@@ -72,16 +71,12 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: dark)", color: "#0b0d11" },
-    { media: "(prefers-color-scheme: light)", color: "#f8fafc" }
+    { media: "(prefers-color-scheme: dark)", color: "#0A0A0A" },
+    { media: "(prefers-color-scheme: light)", color: "#FFFFFF" }
   ]
 };
 
-export default function RootLayout({
-  children
-}: Readonly<{
-  children: ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="zh-Hant" data-theme="dark" suppressHydrationWarning>
       <head>
@@ -90,10 +85,12 @@ export default function RootLayout({
       <body className={`${inter.variable} ${notoSansTc.variable} font-sans antialiased`}>
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[100] focus:rounded-md focus:bg-surface focus:px-3 focus:py-2 focus:text-sm"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-full focus:bg-surface focus:px-4 focus:py-2 focus:text-sm"
         >
           跳到主要內容
         </a>
+
+        <ScrollProgress />
 
         <div className="flex min-h-screen flex-col">
           <Navbar />

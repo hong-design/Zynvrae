@@ -1,5 +1,1 @@
-﻿import { redirect } from "next/navigation";
-
-export default function PlatformsRedirectPage() {
-  redirect("/products");
-}
+﻿export { metadata, default } from "../platform/page";

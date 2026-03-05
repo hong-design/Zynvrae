@@ -1,6 +1,5 @@
-﻿import type { Config } from "tailwindcss";
-
-const config: Config = {
+﻿/** @type {import('tailwindcss').Config} */
+const config = {
   content: [
     "./app/**/*.{ts,tsx,js,jsx,mdx}",
     "./components/**/*.{ts,tsx,js,jsx,mdx}",
@@ -11,11 +10,10 @@ const config: Config = {
       colors: {
         bg: "hsl(var(--bg) / <alpha-value>)",
         surface: "hsl(var(--surface) / <alpha-value>)",
+        "surface-card": "hsl(var(--surface-card) / <alpha-value>)",
         "surface-soft": "hsl(var(--surface-soft) / <alpha-value>)",
-        "surface-strong": "hsl(var(--surface-strong) / <alpha-value>)",
         text: "hsl(var(--text) / <alpha-value>)",
         muted: "hsl(var(--muted) / <alpha-value>)",
-        "muted-strong": "hsl(var(--muted-strong) / <alpha-value>)",
         border: "hsl(var(--border) / <alpha-value>)",
         accent: "hsl(var(--accent) / <alpha-value>)",
         "accent-strong": "hsl(var(--accent-strong) / <alpha-value>)",
@@ -28,11 +26,10 @@ const config: Config = {
         lg: "var(--radius-lg)"
       },
       maxWidth: {
-        content: "1180px"
+        content: "1200px"
       },
       boxShadow: {
-        soft: "var(--shadow-soft)",
-        card: "var(--shadow-card)"
+        soft: "var(--shadow-soft)"
       },
       fontFamily: {
         sans: ["var(--font-inter)", "var(--font-noto)", "system-ui", "sans-serif"]
@@ -42,4 +39,4 @@ const config: Config = {
   plugins: []
 };
 
-export default config;
+module.exports = config;

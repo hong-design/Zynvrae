@@ -21,14 +21,14 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
   const baseId = useId();
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("space-y-3", className)}>
       {items.map((item) => {
         const isOpen = openId === item.id;
         const headerId = `${baseId}-header-${item.id}`;
         const panelId = `${baseId}-panel-${item.id}`;
 
         return (
-          <div key={item.id} className="overflow-hidden rounded-md border border-border/85 bg-surface/75">
+          <div key={item.id} className="overflow-hidden rounded-md border border-border bg-surface-card">
             <h3>
               <button
                 id={headerId}
@@ -36,7 +36,7 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
                 aria-expanded={isOpen}
                 aria-controls={panelId}
                 onClick={() => setOpenId(isOpen ? null : item.id)}
-                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-medium text-text transition hover:bg-surface-soft/65"
+                className="flex w-full items-center justify-between gap-3 px-6 py-4 text-left text-base font-semibold text-text transition hover:opacity-80"
               >
                 <span>{item.title}</span>
                 <span aria-hidden className={cn("transition", isOpen ? "rotate-45" : "rotate-0")}>
@@ -54,7 +54,7 @@ export function Accordion({ items, defaultOpenId, className }: AccordionProps) {
               )}
             >
               <div className="overflow-hidden">
-                <div className="px-4 pb-4 text-sm leading-relaxed text-muted">{item.content}</div>
+                <div className="px-6 pb-6 text-sm leading-relaxed text-muted">{item.content}</div>
               </div>
             </div>
           </div>

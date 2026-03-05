@@ -1,4 +1,5 @@
-User-agent: *
+User-Agent: *
 Allow: /
 
-Sitemap: https://prismarkstudio.site/sitemap.xml
+Host: https://zynvrae.com
+Sitemap: https://zynvrae.com/sitemap.xml

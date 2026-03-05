@@ -4,8 +4,8 @@
 };
 
 export const primaryNavigation: NavigationItem[] = [
+  { href: "/platform", label: "Platform" },
   { href: "/products", label: "Products" },
-  { href: "/principles", label: "Principles" },
-  { href: "/updates", label: "Updates" },
-  { href: "/about", label: "About" }
+  { href: "/company", label: "Company" },
+  { href: "/contact", label: "Contact" }
 ];

@@ -65,12 +65,7 @@ export function Tabs({ items, defaultTabId, className }: TabsProps) {
 
   return (
     <div className={className}>
-      <div
-        role="tablist"
-        aria-label="內容分類"
-        onKeyDown={onKeyDown}
-        className="flex flex-wrap gap-2"
-      >
+      <div role="tablist" aria-label="內容分類" onKeyDown={onKeyDown} className="flex flex-wrap gap-2">
         {items.map((item) => {
           const selected = item.id === activeItem.id;
           const tabId = `${baseId}-tab-${item.id}`;
@@ -87,10 +82,10 @@ export function Tabs({ items, defaultTabId, className }: TabsProps) {
               tabIndex={selected ? 0 : -1}
               onClick={() => setActiveId(item.id)}
               className={cn(
-                "rounded-full border px-3 py-1.5 text-xs font-medium tracking-[0.08em] transition",
+                "rounded-full border px-4 py-2 text-xs font-medium tracking-[0.08em] transition",
                 selected
-                  ? "border-accent/50 bg-accent/12 text-accent"
-                  : "border-border/90 bg-surface-soft/75 text-muted hover:border-accent/35 hover:text-text"
+                  ? "border-accent bg-accent/10 text-accent"
+                  : "border-[#444] bg-transparent text-muted hover:border-accent/60 hover:text-text"
               )}
             >
               {item.label}
@@ -103,7 +98,7 @@ export function Tabs({ items, defaultTabId, className }: TabsProps) {
         id={`${baseId}-panel-${activeItem.id}`}
         role="tabpanel"
         aria-labelledby={`${baseId}-tab-${activeItem.id}`}
-        className="mt-5"
+        className="mt-8"
       >
         {activeItem.content}
       </section>

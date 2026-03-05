@@ -3,10 +3,10 @@
 type BadgeVariant = "neutral" | "accent" | "success" | "warning";
 
 const badgeStyle: Record<BadgeVariant, string> = {
-  neutral: "border-border/90 bg-surface-soft/80 text-muted-strong",
-  accent: "border-accent/45 bg-accent/12 text-accent",
-  success: "border-success/40 bg-success/15 text-success",
-  warning: "border-warning/45 bg-warning/15 text-warning"
+  neutral: "border-border bg-surface-soft text-muted",
+  accent: "border-accent/50 bg-accent/10 text-accent",
+  success: "border-success/50 bg-success/10 text-success",
+  warning: "border-warning/50 bg-warning/10 text-warning"
 };
 
 type BadgeProps = {
@@ -15,15 +15,11 @@ type BadgeProps = {
   className?: string;
 };
 
-export function Badge({
-  children,
-  variant = "neutral",
-  className
-}: BadgeProps) {
+export function Badge({ children, variant = "neutral", className }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-1 text-[11px] font-medium tracking-[0.08em]",
+        "inline-flex items-center rounded-full border px-3 py-1 text-[11px] font-medium tracking-[0.08em]",
         badgeStyle[variant],
         className
       )}

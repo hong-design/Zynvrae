@@ -2,10 +2,10 @@
   name: "Zynvrae",
   shortName: "Zynvrae",
   description:
-    "Zynvrae 是平台型數位產品公司，專注打造可營運、可迭代、可擴展的產品系統。",
+    "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。",
   url: "https://zynvrae.com",
   ogImage: "/opengraph-image",
-  email: "updates@zynvrae.com",
+  email: "zynvrae@gmail.com",
   links: {
     x: "#",
     github: "#",
@@ -15,10 +15,8 @@
 
 export const defaultKeywords = [
   "Zynvrae",
-  "平台型產品",
-  "產品公司",
-  "系統產品",
-  "數位平台",
-  "可靠性",
-  "迭代營運"
+  "平台型數位平台開發",
+  "平台營運導向",
+  "長期產品思維",
+  "可擴展架構"
 ] as const;

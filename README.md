@@ -1,76 +1,47 @@
-﻿# Zynvrae Official Website
+﻿# Zynvrae Website (UI/UX Refactor)
 
-高級極簡、深色預設、平台型產品敘事官網（Next.js App Router + Tailwind CSS）。
+以現有官網文案與資訊架構為基礎，重構為 Next.js + Tailwind 的高級極簡科技風介面。
 
-## Tech Stack
+## Stack
 
 - Next.js 14 (App Router)
+- React 18
 - TypeScript
 - Tailwind CSS
-- next/font（Inter + Noto Sans TC）
+- Framer Motion
 
-## Features
+## Routes
 
-- 全站繁體中文內容與產品公司語氣
-- 100% RWD（手機優先）
-- 深色預設 + 淺色切換（含平滑過渡）
-- 可近用：語意標籤、focus-visible、鍵盤可操作 Tabs/Accordion、reduced-motion
-- SEO：metadata、OG、Twitter Card、robots、sitemap、動態頁 metadata
-- 產品路由：`/products`、`/products/[slug]`
-- 更新路由：`/updates`、`/updates/[slug]`（閱讀時間、目錄）
+- `/`
+- `/platform`
+- `/products`
+- `/company`
+- `/contact`
 
-## Project Structure
+相容導向：`/platforms`、`/about`、`/principles`、`/updates`。
 
-```text
-app/
-  about/page.tsx
-  contact/page.tsx
-  principles/page.tsx
-  products/page.tsx
-  products/[slug]/page.tsx
-  updates/page.tsx
-  updates/[slug]/page.tsx
-  globals.css
-  layout.tsx
-  not-found.tsx
-  opengraph-image.tsx
-  page.tsx
-  robots.ts
-  sitemap.ts
+## Design System
 
-components/
-  forms/SubscribeForm.tsx
-  layout/Footer.tsx
-  layout/Navbar.tsx
-  layout/ThemeToggle.tsx
-  sections/home/
-    Capabilities.tsx
-    FinalCta.tsx
-    Hero.tsx
-    OperatingMindset.tsx
-    ProductsTeaser.tsx
-    SocialProof.tsx
-    UpdatesPreview.tsx
-  ui/
-    Accordion.tsx
-    Badge.tsx
-    Button.tsx
-    Card.tsx
-    Container.tsx
-    Input.tsx
-    Tabs.tsx
+- 主背景：`#0A0A0A`
+- 次背景：`#111111`
+- 卡片背景：`#141414`
+- 邊框：`#222`
+- 主文字：`#F5F5F5`
+- 次文字：`#B5B5B5`
+- Accent：`#5CE1E6`
 
-lib/
-  navigation.ts
-  principles.ts
-  products.ts
-  site.ts
-  updates.ts
-  utils.ts
+設定檔：
+- `styles/tokens.css`
+- `app/globals.css`
+- `tailwind.config.js`
 
-styles/
-  tokens.css
-```
+## Interaction
+
+- 透明 Navbar，滾動後變成 `rgba(0,0,0,0.6)` + backdrop blur
+- Scroll progress bar
+- Section 進場動畫（Framer Motion）：`opacity 0 -> 1`, `y 24 -> 0`, `duration 0.5`, `stagger 0.1`
+- Hero 文字動畫：`opacity 0 -> 1`, `y 20 -> 0`, `duration 0.6`
+- 卡片 hover：邊框 accent + `translateY(-4px)`
 
 ## Local Development
 
@@ -86,17 +57,35 @@ npm run build
 npm run start
 ```
 
-## Deploy (Vercel)
+## Key Files
 
-1. Push 到 GitHub。
-2. 在 Vercel 匯入此 repository。
-3. Framework Preset 選 `Next.js`。
-4. Build Command 保持 `next build`。
-5. Deploy。
+```text
+app/
+  layout.tsx
+  page.tsx
+  platform/page.tsx
+  products/page.tsx
+  company/page.tsx
+  contact/page.tsx
+  globals.css
+  robots.ts
+  sitemap.ts
+  opengraph-image.tsx
 
-## SEO Notes
+components/
+  layout/Navbar.tsx
+  layout/Footer.tsx
+  layout/ScrollProgress.tsx
+  motion/Reveal.tsx
+  site/HomeHero.tsx
+  site/PageHero.tsx
+  ui/Button.tsx
+  ui/Card.tsx
+  ui/Container.tsx
 
-- 全站 metadata 在 `app/layout.tsx`
-- 站點地圖在 `app/sitemap.ts`
-- robots 在 `app/robots.ts`
-- OG 圖片在 `app/opengraph-image.tsx`
+styles/
+  tokens.css
+
+tailwind.config.js
+package.json
+```
