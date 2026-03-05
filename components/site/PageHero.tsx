@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { GlowBG } from "@/components/layout/GlowBG";
+import { GlowBG } from "@/components/GlowBG";
 
 type PageHeroProps = {
   kicker: string;

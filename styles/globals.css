@@ -1,0 +1,174 @@
+﻿@import "./tokens.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  border-color: hsl(var(--border));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  font-family: var(--font-inter), var(--font-noto), system-ui, -apple-system, sans-serif;
+  line-height: 1.7;
+  color: hsl(var(--text));
+  background:
+    radial-gradient(1200px 700px at 20% -10%, hsl(var(--accent) / 0.06), transparent 64%),
+    radial-gradient(1100px 640px at 85% -25%, hsl(var(--accent) / 0.05), transparent 66%),
+    hsl(var(--bg));
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 60;
+  opacity: var(--noise-opacity);
+  background-image:
+    url("data:image/png;base64,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"),
+    repeating-radial-gradient(circle at 0 0, hsl(var(--fg) / 0.05) 0 1px, transparent 1px 3px);
+  background-size: 180px 180px, 3px 3px;
+  background-repeat: repeat;
+  mix-blend-mode: soft-light;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+::selection {
+  background: hsl(var(--accent) / 0.3);
+  color: hsl(var(--bg));
+}
+
+:focus-visible {
+  outline: 2px solid hsl(var(--accent));
+  outline-offset: 2px;
+}
+
+.section-space {
+  padding-block: clamp(56px, 8vw, var(--space-120));
+}
+
+.section-line {
+  position: relative;
+}
+
+.section-line::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1200px, calc(100% - 40px));
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--fg) / 0.14),
+    transparent
+  );
+}
+
+.display-title {
+  font-size: var(--type-hero);
+  line-height: 1.03;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.section-title {
+  font-size: var(--type-section);
+  line-height: 1.2;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.sub-title {
+  font-size: var(--type-sub);
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.body-text {
+  font-size: var(--type-body);
+  line-height: 1.7;
+}
+
+.eyebrow {
+  font-size: var(--type-label);
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+}
+
+.card-lift {
+  transition:
+    transform 220ms ease-out,
+    border-color 220ms ease-out,
+    box-shadow 220ms ease-out,
+    background-color 220ms ease-out;
+}
+
+.card-lift:hover,
+.card-lift:focus-visible,
+.card-lift:focus-within {
+  transform: translateY(-4px);
+  border-color: hsl(var(--accent));
+  box-shadow: var(--shadow-card-hover);
+}
+
+.theme-transition *,
+.theme-transition *::before,
+.theme-transition *::after {
+  transition:
+    background-color 240ms ease,
+    border-color 240ms ease,
+    color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .card-lift:hover,
+  .card-lift:focus-visible,
+  .card-lift:focus-within {
+    transform: none;
+  }
+}

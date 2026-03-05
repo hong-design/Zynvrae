@@ -1,9 +1,9 @@
 ﻿import type { Metadata } from "next";
-import Link from "next/link";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
-import { HomeHero } from "@/components/site/HomeHero";
+import { Card } from "@/components/Card";
+import { Hero } from "@/components/Hero";
+import { Section } from "@/components/Section";
 import { buttonVariants } from "@/components/ui/Button";
-import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
@@ -16,10 +16,10 @@ export default function HomePage() {
   return (
     <>
       <Container>
-        <HomeHero />
+        <Hero />
       </Container>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -31,9 +31,9 @@ export default function HomePage() {
             </p>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -56,11 +56,11 @@ export default function HomePage() {
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">平台共通特徵</h3>
-                <ul className="mt-6 list-disc space-y-2 pl-5 text-muted">
-                  <li>明確的角色與權限設計</li>
-                  <li>可支撐實際營運的流程結構</li>
-                  <li>為長期擴展與成長而設計</li>
-                </ul>
+                <div className="mt-6 grid gap-3">
+                  <p className="rounded-md border border-border bg-surface-soft/40 px-4 py-3 text-muted">明確的角色與權限設計</p>
+                  <p className="rounded-md border border-border bg-surface-soft/40 px-4 py-3 text-muted">可支撐實際營運的流程結構</p>
+                  <p className="rounded-md border border-border bg-surface-soft/40 px-4 py-3 text-muted">為長期擴展與成長而設計</p>
+                </div>
               </Card>
             </StaggerItem>
             <StaggerItem>
@@ -71,9 +71,9 @@ export default function HomePage() {
             </StaggerItem>
           </Stagger>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -85,26 +85,43 @@ export default function HomePage() {
             </p>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
               <h2 className="section-title">我們關注什麼</h2>
               <p className="mt-2 text-sm uppercase tracking-[0.12em] text-muted">Focus</p>
             </header>
-            <ul className="body-text mt-8 list-disc space-y-2 pl-5 text-muted">
-              <li>長期營運能力</li>
-              <li>平台結構與可擴展性</li>
-              <li>角色分工與權限治理</li>
-              <li>可持續成長的產品設計</li>
-            </ul>
           </Reveal>
-        </Container>
-      </section>
 
-      <section className="section-space section-line">
+          <Stagger className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+            <StaggerItem>
+              <Card>
+                <p className="body-text text-muted">長期營運能力</p>
+              </Card>
+            </StaggerItem>
+            <StaggerItem>
+              <Card>
+                <p className="body-text text-muted">平台結構與可擴展性</p>
+              </Card>
+            </StaggerItem>
+            <StaggerItem>
+              <Card>
+                <p className="body-text text-muted">角色分工與權限治理</p>
+              </Card>
+            </StaggerItem>
+            <StaggerItem>
+              <Card>
+                <p className="body-text text-muted">可持續成長的產品設計</p>
+              </Card>
+            </StaggerItem>
+          </Stagger>
+        </Container>
+      </Section>
+
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -116,9 +133,9 @@ export default function HomePage() {
             </p>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -152,9 +169,9 @@ export default function HomePage() {
             </StaggerItem>
           </Stagger>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -168,9 +185,9 @@ export default function HomePage() {
             </ul>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -184,15 +201,15 @@ export default function HomePage() {
               <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "primary", size: "lg" })}>
                 寄送合作需求
               </a>
-              <a href="/talk.html" className={buttonVariants({ variant: "secondary", size: "lg" })}>
+              <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "secondary", size: "lg" })}>
                 前往線上洽談頁
               </a>
             </div>
           </Reveal>
         </Container>
-      </section>
+      </Section>
 
-      <section className="section-space section-line">
+      <Section>
         <Container>
           <Reveal>
             <header>
@@ -204,7 +221,7 @@ export default function HomePage() {
             </p>
           </Reveal>
         </Container>
-      </section>
+      </Section>
     </>
   );
 }

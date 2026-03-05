@@ -62,8 +62,8 @@ export default function ContactPage() {
                 <h3 className="sub-title">線上入口</h3>
                 <p className="body-text mt-6 text-muted">適合初步交流與快速確認方向。</p>
                 <p className="mt-5 text-base font-medium text-text">
-                  <a href="/talk.html" className="transition hover:opacity-70">
-                    前往 talk.html
+                  <a href="mailto:zynvrae@gmail.com" className="transition hover:opacity-70">
+                    寄送 Email
                   </a>
                 </p>
               </Card>

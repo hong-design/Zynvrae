@@ -1,5 +1,0 @@
-User-Agent: *
-Allow: /
-
-Host: https://zynvrae.com
-Sitemap: https://zynvrae.com/sitemap.xml
