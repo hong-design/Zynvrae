@@ -6,7 +6,10 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "公司資訊",
-  description: "Zynvrae 以團隊形式運作，專注平台型數位平台開發，並規劃正式法人與組織結構。"
+  description: "Zynvrae 以團隊形式運作，專注平台型數位平台開發，並規劃正式法人與組織結構。",
+  alternates: {
+    canonical: "/company"
+  }
 };
 
 export default function CompanyPage() {

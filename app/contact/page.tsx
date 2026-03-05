@@ -6,7 +6,10 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "聯絡合作",
-  description: "Zynvrae 聯絡入口：策略合作、產品合作與長期合作洽談。"
+  description: "Zynvrae 聯絡入口：策略合作、產品合作與長期合作洽談。",
+  alternates: {
+    canonical: "/contact"
+  }
 };
 
 export default function ContactPage() {

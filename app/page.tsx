@@ -9,7 +9,10 @@ import { Container } from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "平台型數位平台開發",
   description:
-    "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。"
+    "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。",
+  alternates: {
+    canonical: "/"
+  }
 };
 
 export default function HomePage() {

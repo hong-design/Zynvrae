@@ -26,6 +26,15 @@ npm run build
 npm run start
 ```
 
+## Main Edit Map
+
+- 首頁內容：`app/page.tsx`
+- 內頁內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
+- 全站框架（SEO/字體/Navbar/Footer）：`app/layout.tsx`
+- 導覽列項目：`lib/navigation.ts`
+- 視覺 token：`styles/tokens.css`
+- 全域樣式（噪點/分隔線/focus）：`styles/globals.css`
+
 ## Key Files
 
 - `app/layout.tsx`
@@ -70,6 +79,25 @@ cmd /c deploy.bat
 ```
 
 流程包含：`git pull --rebase --autostash` -> `npm run build` -> 同步 `out/*` 到 root -> `git add/commit` -> `git push`
+
+### Deploy Checklist
+
+1. 先確認本機可編譯：`npm run build`
+2. 執行 `.\deploy.bat`
+3. 等 GitHub Pages/CDN 1-3 分鐘
+4. 瀏覽器用 `Ctrl + F5` 強制重整
+
+### If You See Plain Text (No CSS)
+
+- 通常是舊快取或部署尚未完成，不是 React 壞掉。
+- 先看是否能開啟 `https://zynvrae.com/_next/static/css/...css`
+- 若 CSS 是 404，重跑 `.\deploy.bat`，並確認 push 成功。
+
+## SEO Notes
+
+- canonical 已改為「每頁獨立設定」：
+  - `/` `/platform` `/products` `/company` `/contact`
+- 相容路由 `/about` `/platforms` `/principles` `/updates` 會共用主頁 metadata，避免重複內容競爭。
 
 ## UI Details
 

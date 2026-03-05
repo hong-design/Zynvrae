@@ -6,7 +6,10 @@ import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
   title: "平台方向",
-  description: "Zynvrae 平台方向：打造可營運、可擴展、可治理的多角色數位平台。"
+  description: "Zynvrae 平台方向：打造可營運、可擴展、可治理的多角色數位平台。",
+  alternates: {
+    canonical: "/platform"
+  }
 };
 
 export default function PlatformPage() {

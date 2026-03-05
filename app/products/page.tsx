@@ -7,7 +7,10 @@ import { Container } from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "產品狀態",
   description:
-    "Zynvrae 產品與平台目前處於開發與驗證階段，未來將以子品牌或獨立產品形式推出。"
+    "Zynvrae 產品與平台目前處於開發與驗證階段，未來將以子品牌或獨立產品形式推出。",
+  alternates: {
+    canonical: "/products"
+  }
 };
 
 export default function ProductsPage() {

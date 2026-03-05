@@ -81,7 +81,7 @@ export function Navbar() {
           <button
             type="button"
             onClick={() => setIsMenuOpen((value) => !value)}
-            className="inline-flex h-10 items-center justify-center rounded-full border border-[#444] px-4 text-sm text-text transition hover:opacity-70 md:hidden"
+            className="inline-flex h-10 items-center justify-center rounded-full border border-[#444] px-4 text-sm text-text transition hover:opacity-70 focus-visible:ring-2 focus-visible:ring-accent md:hidden"
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             aria-label="切換導覽選單"

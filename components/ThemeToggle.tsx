@@ -33,16 +33,19 @@ export function ThemeToggle({ className }: { className?: string }) {
     }, 280);
   };
 
+  const switchToLabel = theme === "dark" ? "淺色" : "深色";
+
   return (
     <button
       type="button"
       onClick={handleToggle}
+      aria-pressed={theme === "light"}
+      aria-label={`切換到${switchToLabel}模式`}
+      title={switchToLabel}
       className={cn(
-        "inline-flex h-10 items-center justify-center rounded-md border border-border/85 bg-surface-soft/70 px-3 text-xs font-medium tracking-[0.08em] text-muted transition hover:border-accent/45 hover:text-text",
+        "inline-flex h-10 items-center justify-center rounded-md border border-border/85 bg-surface-soft/70 px-3 text-xs font-medium tracking-[0.08em] text-muted transition hover:border-accent/45 hover:text-text focus-visible:ring-2 focus-visible:ring-accent",
         className
       )}
-      aria-label={theme === "dark" ? "切換為淺色模式" : "切換為深色模式"}
-      title={theme === "dark" ? "Light" : "Dark"}
     >
       {theme === "dark" ? "Light" : "Dark"}
     </button>

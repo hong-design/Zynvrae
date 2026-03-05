@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 
 export function ProgressBar() {
+  const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 150,
@@ -14,7 +15,7 @@ export function ProgressBar() {
     <motion.div
       aria-hidden
       className="fixed left-0 right-0 top-0 z-[80] h-[2px] origin-left bg-accent"
-      style={{ scaleX }}
+      style={{ scaleX: shouldReduceMotion ? scrollYProgress : scaleX }}
     />
   );
 }
