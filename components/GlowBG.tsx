@@ -6,17 +6,20 @@ type GlowBGProps = {
 
 export function GlowBG({ className }: GlowBGProps) {
   return (
-    <div aria-hidden className={cn("pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
+    <div
+      aria-hidden
+      className={cn("pointer-events-none absolute -inset-x-[18vw] -inset-y-[36%] -z-10", className)}
+    >
       <span
-        className="absolute -left-[20%] -top-[28%] h-[420px] w-[420px] rounded-full blur-[100px]"
+        className="absolute left-[6%] top-[10%] h-[560px] w-[560px] rounded-full blur-[120px]"
         style={{
-          background: "radial-gradient(circle, hsl(var(--accent) / var(--glow-opacity-1)) 0%, transparent 72%)"
+          background: "radial-gradient(circle, hsl(var(--accent) / var(--glow-opacity-1)) 0%, transparent 74%)"
         }}
       />
       <span
-        className="absolute -bottom-[34%] -right-[14%] h-[400px] w-[400px] rounded-full blur-[96px]"
+        className="absolute bottom-[4%] right-[8%] h-[520px] w-[520px] rounded-full blur-[116px]"
         style={{
-          background: "radial-gradient(circle, hsl(var(--accent) / var(--glow-opacity-2)) 0%, transparent 74%)"
+          background: "radial-gradient(circle, hsl(var(--accent) / var(--glow-opacity-2)) 0%, transparent 76%)"
         }}
       />
     </div>

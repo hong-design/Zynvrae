@@ -1,6 +1,7 @@
 ﻿"use client";
 
 import type { PropsWithChildren } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -11,8 +12,13 @@ type RevealProps = PropsWithChildren<{
 
 export function Reveal({ children, className, delay = 0 }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (shouldReduceMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (shouldReduceMotion || !mounted) {
     return <div className={className}>{children}</div>;
   }
 
@@ -35,8 +41,13 @@ type StaggerProps = PropsWithChildren<{
 
 export function Stagger({ children, className }: StaggerProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (shouldReduceMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (shouldReduceMotion || !mounted) {
     return <div className={className}>{children}</div>;
   }
 
@@ -62,8 +73,13 @@ export function Stagger({ children, className }: StaggerProps) {
 
 export function StaggerItem({ children, className }: RevealProps) {
   const shouldReduceMotion = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
 
-  if (shouldReduceMotion) {
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (shouldReduceMotion || !mounted) {
     return <div className={className}>{children}</div>;
   }
 

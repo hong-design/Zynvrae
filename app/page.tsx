@@ -15,9 +15,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
-      <Container>
-        <Hero />
-      </Container>
+      <Hero />
 
       <Section>
         <Container>
