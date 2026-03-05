@@ -9,6 +9,9 @@ const config = {
     extend: {
       colors: {
         bg: "hsl(var(--bg) / <alpha-value>)",
+        "bg-2": "hsl(var(--bg-2) / <alpha-value>)",
+        fg: "hsl(var(--fg) / <alpha-value>)",
+        card: "hsl(var(--card) / <alpha-value>)",
         surface: "hsl(var(--surface) / <alpha-value>)",
         "surface-card": "hsl(var(--surface-card) / <alpha-value>)",
         "surface-soft": "hsl(var(--surface-soft) / <alpha-value>)",
@@ -28,8 +31,25 @@ const config = {
       maxWidth: {
         content: "1200px"
       },
+      spacing: {
+        16: "var(--space-16)",
+        24: "var(--space-24)",
+        32: "var(--space-32)",
+        48: "var(--space-48)",
+        64: "var(--space-64)",
+        96: "var(--space-96)",
+        120: "var(--space-120)"
+      },
+      fontSize: {
+        hero: ["var(--type-hero)", { lineHeight: "1.03", fontWeight: "600", letterSpacing: "-0.03em" }],
+        section: ["var(--type-section)", { lineHeight: "1.2", fontWeight: "600", letterSpacing: "-0.02em" }],
+        sub: ["var(--type-sub)", { lineHeight: "1.4", fontWeight: "600" }],
+        body: ["var(--type-body)", { lineHeight: "1.7" }],
+        label: ["var(--type-label)", { lineHeight: "1.4", letterSpacing: "0.12em" }]
+      },
       boxShadow: {
-        soft: "var(--shadow-soft)"
+        soft: "var(--shadow-soft)",
+        "card-glow": "var(--shadow-card-hover)"
       },
       fontFamily: {
         sans: ["var(--font-inter)", "var(--font-noto)", "system-ui", "sans-serif"]

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ThemeToggle } from "@/components/layout/ThemeToggle";
 import { Container } from "@/components/ui/Container";
 import { primaryNavigation } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
@@ -32,9 +33,9 @@ export function Navbar() {
       <Container>
         <div
           className={cn(
-            "mt-4 flex h-[72px] items-center justify-between rounded-full border px-6 transition",
+            "mt-3 flex h-[72px] items-center justify-between rounded-full border px-4 transition-all duration-200 md:px-6",
             isScrolled
-              ? "border-border bg-[rgba(0,0,0,0.6)] backdrop-blur-md"
+              ? "border-border bg-[hsl(var(--bg)/0.62)] shadow-soft backdrop-blur-xl"
               : "border-transparent bg-transparent"
           )}
         >
@@ -47,25 +48,35 @@ export function Navbar() {
             ZYNVRAE
           </Link>
 
-          <nav className="hidden items-center gap-8 md:flex" aria-label="主要導覽">
-            {primaryNavigation.map((item) => {
-              const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
+          <div className="hidden items-center gap-4 md:flex">
+            <nav className="flex items-center gap-8" aria-label="主要導覽">
+              {primaryNavigation.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "text-sm text-text transition hover:opacity-70",
-                    isActive ? "opacity-100" : "opacity-90"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </nav>
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "group relative pb-1 text-sm text-text transition-opacity duration-200 hover:opacity-70",
+                      isActive ? "opacity-100" : "opacity-90"
+                    )}
+                  >
+                    {item.label}
+                    <span
+                      aria-hidden
+                      className={cn(
+                        "absolute bottom-0 left-0 h-px w-full bg-text transition-opacity duration-200",
+                        isActive ? "opacity-100" : "opacity-0"
+                      )}
+                    />
+                  </Link>
+                );
+              })}
+            </nav>
+            <ThemeToggle />
+          </div>
 
           <button
             type="button"
@@ -82,8 +93,11 @@ export function Navbar() {
         {isMenuOpen ? (
           <div
             id="mobile-navigation"
-            className="mt-3 space-y-2 rounded-2xl border border-border bg-[rgba(0,0,0,0.8)] p-3 backdrop-blur md:hidden"
+            className="mt-3 space-y-2 rounded-2xl border border-border bg-[hsl(var(--bg)/0.84)] p-3 backdrop-blur-xl md:hidden"
           >
+            <div className="flex justify-end pb-1">
+              <ThemeToggle />
+            </div>
             {primaryNavigation.map((item) => {
               const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
 

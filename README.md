@@ -1,6 +1,6 @@
-﻿# Zynvrae Website (UI/UX Refactor)
+﻿# Zynvrae Website (UI Layer Upgrade)
 
-以現有官網文案與資訊架構為基礎，重構為 Next.js + Tailwind 的高級極簡科技風介面。
+以現有網站文案與資訊架構為基礎，進行 Next.js + Tailwind + Framer Motion 的視覺重構。
 
 ## Stack
 
@@ -10,6 +10,15 @@
 - Tailwind CSS
 - Framer Motion
 
+## Scripts
+
+```bash
+npm install
+npm run dev
+npm run build
+npm run start
+```
+
 ## Routes
 
 - `/`
@@ -18,70 +27,59 @@
 - `/company`
 - `/contact`
 
-相容導向：`/platforms`、`/about`、`/principles`、`/updates`。
+相容路由：`/platforms`、`/about`、`/principles`、`/updates`。
 
-## Design System
+## Design Tokens
 
-- 主背景：`#0A0A0A`
-- 次背景：`#111111`
-- 卡片背景：`#141414`
-- 邊框：`#222`
-- 主文字：`#F5F5F5`
-- 次文字：`#B5B5B5`
-- Accent：`#5CE1E6`
+定義在：`styles/tokens.css`
 
-設定檔：
-- `styles/tokens.css`
-- `app/globals.css`
-- `tailwind.config.js`
+- colors: `bg`, `bg-2`, `card`, `fg`, `muted`, `border`, `accent`
+- radius: `8 / 12 / 16`
+- spacing: `16 / 24 / 32 / 48 / 64 / 96 / 120`
+- typography: `hero / section / sub / body / label`
+- shadow: `soft`, `card-hover-glow`
 
-## Interaction
+## UI Details Implemented
 
-- 透明 Navbar，滾動後變成 `rgba(0,0,0,0.6)` + backdrop blur
-- Scroll progress bar
-- Section 進場動畫（Framer Motion）：`opacity 0 -> 1`, `y 24 -> 0`, `duration 0.5`, `stagger 0.1`
-- Hero 文字動畫：`opacity 0 -> 1`, `y 20 -> 0`, `duration 0.6`
-- 卡片 hover：邊框 accent + `translateY(-4px)`
+1. Subtle noise overlay（base64 PNG + CSS fallback）
+2. Hero radial glow（左右雙光暈，深淺色自適應）
+3. Glass navbar（scroll 後 blur + 半透明 + 邊框）
+4. Card hover glow（accent border + lift + glow）
+5. Section reveal（opacity + y + stagger）
+6. Hero micro-timing（title / body / CTA 分段延遲）
+7. Scroll progress bar（2px top bar）
+8. Gradient divider（section 之間漸層分隔）
 
-## Local Development
-
-```bash
-npm install
-npm run dev
-```
-
-## Build
-
-```bash
-npm run build
-npm run start
-```
-
-## Key Files
+## Key Structure
 
 ```text
 app/
   layout.tsx
+  globals.css
   page.tsx
   platform/page.tsx
   products/page.tsx
   company/page.tsx
   contact/page.tsx
-  globals.css
-  robots.ts
-  sitemap.ts
-  opengraph-image.tsx
 
 components/
-  layout/Navbar.tsx
-  layout/Footer.tsx
-  layout/ScrollProgress.tsx
-  motion/Reveal.tsx
-  site/HomeHero.tsx
-  site/PageHero.tsx
-  ui/Button.tsx
-  ui/Card.tsx
-  ui/Container.tsx
+  layout/
+    Navbar.tsx
+    Footer.tsx
+    ThemeToggle.tsx
+    ProgressBar.tsx
+    GlowBG.tsx
+  motion/
+    Reveal.tsx
+  site/
+    HomeHero.tsx
+    PageHero.tsx
+  ui/
+    Section.tsx
+    Divider.tsx
+    Card.tsx
+    Button.tsx
+    Container.tsx
 
 styles/
   tokens.css

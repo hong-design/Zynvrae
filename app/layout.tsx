@@ -3,7 +3,7 @@ import { Inter, Noto_Sans_TC } from "next/font/google";
 import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/layout/Navbar";
-import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { ProgressBar } from "@/components/layout/ProgressBar";
 import { defaultKeywords, siteConfig } from "@/lib/site";
 import "./globals.css";
 
@@ -90,7 +90,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode 
           跳到主要內容
         </a>
 
-        <ScrollProgress />
+        <ProgressBar />
 
         <div className="flex min-h-screen flex-col">
           <Navbar />

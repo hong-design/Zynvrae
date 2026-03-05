@@ -2,56 +2,86 @@
 
 import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
+import { GlowBG } from "@/components/layout/GlowBG";
 import { buttonVariants } from "@/components/ui/Button";
 
-const heroTransition = {
-  duration: 0.6,
-  ease: [0.22, 1, 0.36, 1]
-};
+const ease: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export function HomeHero() {
   const shouldReduceMotion = useReducedMotion();
 
-  const initial = shouldReduceMotion ? false : { opacity: 0, y: 20 };
-  const animate = shouldReduceMotion ? {} : { opacity: 1, y: 0 };
+  const initial = shouldReduceMotion ? undefined : { opacity: 0, y: 18 };
+  const animate = shouldReduceMotion ? undefined : { opacity: 1, y: 0 };
 
   return (
-    <section className="section-space relative overflow-hidden pb-[100px] pt-[96px]">
-      <div aria-hidden className="hero-glow" />
+    <section className="section-space relative overflow-hidden pb-[96px] pt-[80px] md:pt-[96px]">
+      <GlowBG />
 
       <div className="grid items-start gap-10 lg:grid-cols-12">
-        <motion.div initial={initial} animate={animate} transition={heroTransition} className="lg:col-span-8">
-          <p className="text-xs uppercase tracking-[0.14em] text-muted">BRAND OVERVIEW</p>
-          <h1 className="display-title mt-6">Zynvrae</h1>
-          <p className="body-text mt-8 max-w-3xl text-muted">
-            我們專注打造數位服務產品。定位不是一次性交付的外包開發，而是把平台本身作為可以持續經營的產品。
-          </p>
+        <div className="lg:col-span-8">
+          <motion.p
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.6, ease }}
+            className="eyebrow uppercase text-muted"
+          >
+            BRAND OVERVIEW
+          </motion.p>
 
-          <ul className="mt-8 flex flex-wrap gap-3" aria-label="品牌定位">
+          <motion.h1
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.6, ease }}
+            className="display-title mt-6"
+          >
+            Zynvrae
+          </motion.h1>
+
+          <motion.p
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.56, ease, delay: shouldReduceMotion ? 0 : 0.14 }}
+            className="body-text mt-8 max-w-3xl text-muted"
+          >
+            我們專注打造數位服務產品。定位不是一次性交付的外包開發，而是把平台本身作為可以持續經營的產品。
+          </motion.p>
+
+          <motion.ul
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.56, ease, delay: shouldReduceMotion ? 0 : 0.16 }}
+            className="mt-8 flex flex-wrap gap-3"
+            aria-label="品牌定位"
+          >
             <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">平台型產品開發者</li>
             <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">平台營運導向</li>
             <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">長期產品思維</li>
             <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">可擴展架構</li>
-          </ul>
+          </motion.ul>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <motion.div
+            initial={initial}
+            animate={animate}
+            transition={{ duration: 0.52, ease, delay: shouldReduceMotion ? 0 : 0.28 }}
+            className="mt-10 flex flex-wrap gap-4"
+          >
             <Link href="/platform" className={buttonVariants({ variant: "primary", size: "lg" })}>
               查看平台方向
             </Link>
             <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "lg" })}>
               洽談合作
             </Link>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
 
         <motion.aside
           initial={initial}
           animate={animate}
-          transition={{ ...heroTransition, delay: shouldReduceMotion ? 0 : 0.08 }}
+          transition={{ duration: 0.56, ease, delay: shouldReduceMotion ? 0 : 0.22 }}
           aria-label="核心主張"
-          className="rounded-md border border-border bg-surface-card p-8 lg:col-span-4"
+          className="rounded-[14px] border border-border bg-card p-8 lg:col-span-4"
         >
-          <p className="text-xs uppercase tracking-[0.14em] text-muted">核心主張</p>
+          <p className="eyebrow uppercase text-muted">核心主張</p>
           <ol className="mt-6 space-y-4">
             <li className="flex items-start gap-4 text-sm text-text">
               <span className="inline-flex h-7 min-w-7 items-center justify-center rounded-full border border-border text-xs text-muted">01</span>
