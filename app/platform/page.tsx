@@ -1,16 +1,15 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "平台方向",
   description: "Zynvrae 平台方向：打造可營運、可擴展、可治理的多角色數位平台。",
-  alternates: {
-    canonical: "/platform"
-  }
-};
+  canonical: "/platform"
+});
 
 export default function PlatformPage() {
   return (
@@ -48,7 +47,7 @@ export default function PlatformPage() {
             </header>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">角色與權限設計</h3>
@@ -110,3 +109,4 @@ export default function PlatformPage() {
     </>
   );
 }
+

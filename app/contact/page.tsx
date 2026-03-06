@@ -1,16 +1,15 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "聯絡合作",
   description: "Zynvrae 聯絡入口：策略合作、產品合作與長期合作洽談。",
-  alternates: {
-    canonical: "/contact"
-  }
-};
+  canonical: "/contact"
+});
 
 export default function ContactPage() {
   return (
@@ -48,7 +47,7 @@ export default function ContactPage() {
             </header>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">Email</h3>
@@ -94,3 +93,4 @@ export default function ContactPage() {
     </>
   );
 }
+

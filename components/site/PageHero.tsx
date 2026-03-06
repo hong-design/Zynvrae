@@ -17,7 +17,7 @@ export function PageHero({ kicker, title, description }: PageHeroProps) {
   const animate = shouldReduceMotion ? undefined : { opacity: 1, y: 0 };
 
   return (
-    <section className="section-space relative overflow-visible pb-[96px] pt-[80px] md:pt-[96px]">
+    <section className="section-space relative overflow-visible pb-16 pt-14 sm:pb-20 sm:pt-16 md:pb-[96px] md:pt-[96px]">
       <GlowBG />
 
       <div className="max-w-4xl">
@@ -41,7 +41,7 @@ export function PageHero({ kicker, title, description }: PageHeroProps) {
           initial={initial}
           animate={animate}
           transition={{ duration: 0.56, ease, delay: shouldReduceMotion ? 0 : 0.14 }}
-          className="body-text mt-8 max-w-3xl text-muted"
+          className="body-text mt-6 max-w-3xl text-muted sm:mt-8"
         >
           {description}
         </motion.p>

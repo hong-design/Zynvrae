@@ -36,8 +36,43 @@ export const metadata: Metadata = {
     default: "Zynvrae | 平台型數位平台開發",
     template: "%s | Zynvrae"
   },
+  applicationName: siteConfig.name,
+  category: "technology",
   description: siteConfig.description,
   keywords: [...defaultKeywords],
+  authors: [{ name: siteConfig.name }],
+  creator: siteConfig.name,
+  publisher: siteConfig.name,
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false
+  },
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    title: siteConfig.name,
+    statusBarStyle: "black-translucent"
+  },
+  icons: {
+    icon: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
+    apple: [{ url: "/apple-icon", type: "image/png", sizes: "512x512" }],
+    shortcut: ["/icon"]
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1
+    }
+  },
+  alternates: {
+    canonical: "/"
+  },
   openGraph: {
     type: "website",
     locale: "zh_TW",
@@ -50,7 +85,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: "Zynvrae 官方網站"
+        alt: "Zynvrae | 平台型數位平台開發"
       }
     ]
   },
@@ -58,11 +93,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Zynvrae | 平台型數位平台開發",
     description: siteConfig.description,
-    images: [siteConfig.ogImage]
-  },
-  robots: {
-    index: true,
-    follow: true
+    images: [siteConfig.twitterImage]
   }
 };
 

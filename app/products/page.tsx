@@ -1,17 +1,16 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "產品狀態",
   description:
     "Zynvrae 產品與平台目前處於開發與驗證階段，未來將以子品牌或獨立產品形式推出。",
-  alternates: {
-    canonical: "/products"
-  }
-};
+  canonical: "/products"
+});
 
 export default function ProductsPage() {
   return (
@@ -33,7 +32,7 @@ export default function ProductsPage() {
             </header>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">平台本體為產品</h3>
@@ -82,3 +81,4 @@ export default function ProductsPage() {
     </>
   );
 }
+

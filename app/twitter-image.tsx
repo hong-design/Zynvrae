@@ -8,9 +8,9 @@ export const size = {
 };
 export const contentType = "image/png";
 
-export default function OpenGraphImage() {
+export default function TwitterImage() {
   return createSocialImage({
     title: "平台型數位平台開發",
-    subtitle: "平台營運導向。長期產品思維。可擴展架構。"
+    subtitle: "高對比、極簡、系統感。Zynvrae 官方網站。"
   });
 }

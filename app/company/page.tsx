@@ -1,16 +1,15 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "公司資訊",
   description: "Zynvrae 以團隊形式運作，專注平台型數位平台開發，並規劃正式法人與組織結構。",
-  alternates: {
-    canonical: "/company"
-  }
-};
+  canonical: "/company"
+});
 
 export default function CompanyPage() {
   return (
@@ -35,7 +34,7 @@ export default function CompanyPage() {
             </p>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">優先合作類型</h3>
@@ -92,3 +91,4 @@ export default function CompanyPage() {
     </>
   );
 }
+

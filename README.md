@@ -19,12 +19,38 @@ npm run dev
 
 預覽網址：`http://localhost:3000`
 
+Windows 建議直接用：
+
+```bat
+.\preview.bat
+```
+
+如果 PowerShell 擋住 `npm.ps1`，不要直接打 `npm run dev`，改用：
+
+```bat
+cmd /c npm run dev
+```
+
 ## Build
 
 ```bash
 npm run build
 npm run start
 ```
+
+## Recent Updates
+
+- 新增 `preview.bat`，Windows 可直接用 `.\preview.bat` 啟動本機預覽。
+- 手機版重新調整：Hero 間距縮合、CTA 改為直向滿寬、卡片內距下修、Navbar 高度改為 `64px`。
+- 手機導覽升級為 overlay 面板：加入背景遮罩、關閉鍵、目前頁面高亮、`Esc` 關閉與背景滾動鎖定。
+- 修正手機版頁面底部仍可左右拖動的問題，已在全域樣式收斂 `overflow-x`。
+- SEO/OG 完整化：加入共用 metadata helper、manifest、icon、apple-icon、twitter-image。
+- 相容路由 `/about` `/platforms` `/principles` `/updates` 已改為 `noindex`，避免重複內容競爭。
+- 光暈層已改為全站共用元件，降低邊緣切痕感。
+- Theme toggle 補強 `aria-label`、`aria-pressed` 與 focus ring。
+- Scroll progress bar 在 `prefers-reduced-motion` 下改為更穩定的行為。
+- SEO canonical 改成每頁獨立設定，不再全部指向首頁。
+- `deploy.bat` 已支援 `git pull --rebase --autostash`，並自動同步靜態輸出到 GitHub Pages 根目錄。
 
 ## Main Edit Map
 
@@ -34,11 +60,16 @@ npm run start
 - 導覽列項目：`lib/navigation.ts`
 - 視覺 token：`styles/tokens.css`
 - 全域樣式（噪點/分隔線/focus）：`styles/globals.css`
+- 手機版主要調整點：`components/Hero.tsx` `components/site/PageHero.tsx` `components/ui/Card.tsx` `components/Navbar.tsx`
 
 ## Key Files
 
 - `app/layout.tsx`
+- `app/manifest.ts`
+- `app/icon.tsx`
+- `app/apple-icon.tsx`
 - `app/page.tsx`
+- `app/twitter-image.tsx`
 - `components/Navbar.tsx`
 - `components/Hero.tsx`
 - `components/site/PageHero.tsx`
@@ -59,6 +90,9 @@ npm run start
 - Hero 視覺：`components/Hero.tsx`
 - 內頁 Hero 視覺：`components/site/PageHero.tsx`
 - 全站光暈層：`components/GlowBG.tsx`
+- SEO/OG 設定：`lib/seo.ts` `lib/site.ts` `app/layout.tsx`
+- 社群分享圖：`lib/og.tsx` `app/opengraph-image.tsx` `app/twitter-image.tsx`
+- App 圖示與 PWA metadata：`app/icon.tsx` `app/apple-icon.tsx` `app/manifest.ts`
 - Footer：`components/layout/Footer.tsx`
 - 導覽項目文字：`lib/navigation.ts`
 - 色票與字級 token：`styles/tokens.css`
@@ -97,7 +131,13 @@ cmd /c deploy.bat
 
 - canonical 已改為「每頁獨立設定」：
   - `/` `/platform` `/products` `/company` `/contact`
-- 相容路由 `/about` `/platforms` `/principles` `/updates` 會共用主頁 metadata，避免重複內容競爭。
+- 相容路由 `/about` `/platforms` `/principles` `/updates` 已設為 `noindex, follow`，並指向正式 canonical。
+- 已補齊 Open Graph / Twitter Card / icons / manifest：
+  - `/opengraph-image`
+  - `/twitter-image`
+  - `/icon`
+  - `/apple-icon`
+  - `/manifest.webmanifest`
 
 ## UI Details
 
@@ -109,6 +149,14 @@ cmd /c deploy.bat
 - Hero micro-timing
 - Scroll progress bar
 - Gradient divider
+
+## Mobile Notes
+
+- Hero 行動版會自動改成 CTA 直向堆疊（按鈕滿寬）。
+- Card 在手機使用較小內距（`p-6`），平板以上再放大。
+- Section 標題字級與段落間距已針對手機下修。
+- 手機導覽列高度改為 `64px`，並保留觸控安全區。
+- 全站已限制行動版橫向溢出，避免底部出現可左右拖動。
 
 ## Accessibility
 

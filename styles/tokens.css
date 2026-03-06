@@ -27,9 +27,9 @@
   --space-64: 64px;
   --space-96: 96px;
   --space-120: 120px;
-  --type-hero: clamp(40px, 7.2vw, 72px);
-  --type-section: clamp(32px, 4vw, 36px);
-  --type-sub: clamp(20px, 3vw, 22px);
+  --type-hero: clamp(40px, 7.6vw, 72px);
+  --type-section: clamp(28px, 5.6vw, 36px);
+  --type-sub: clamp(19px, 3.2vw, 22px);
   --type-body: 16px;
   --type-label: clamp(12px, 1.2vw, 13px);
   --shadow-soft: 0 14px 42px rgba(0, 0, 0, 0.24);

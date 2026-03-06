@@ -5,15 +5,14 @@ import { Hero } from "@/components/Hero";
 import { Section } from "@/components/ui/Section";
 import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { buildMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildMetadata({
   title: "平台型數位平台開發",
   description:
     "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。",
-  alternates: {
-    canonical: "/"
-  }
-};
+  canonical: "/"
+});
 
 export default function HomePage() {
   return (
@@ -43,7 +42,7 @@ export default function HomePage() {
             </header>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">核心方向</h3>
@@ -97,7 +96,7 @@ export default function HomePage() {
             </header>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2 xl:grid-cols-4">
+          <Stagger className="mt-8 grid gap-4 sm:gap-6 md:grid-cols-2 md:gap-8 xl:grid-cols-4">
             <StaggerItem>
               <Card>
                 <p className="body-text text-muted">長期營運能力</p>
@@ -148,7 +147,7 @@ export default function HomePage() {
             </p>
           </Reveal>
 
-          <Stagger className="mt-8 grid gap-8 md:grid-cols-2">
+          <Stagger className="mt-8 grid gap-6 md:grid-cols-2 md:gap-8">
             <StaggerItem>
               <Card>
                 <h3 className="sub-title">優先合作類型</h3>
@@ -198,11 +197,11 @@ export default function HomePage() {
             <p className="body-text mt-8 max-w-4xl text-muted">
               聯絡以策略合作、產品合作與長期合作洽談為主要方向。
             </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "primary", size: "lg" })}>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
+              <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}>
                 寄送合作需求
               </a>
-              <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "secondary", size: "lg" })}>
+              <a href="mailto:zynvrae@gmail.com" className={buttonVariants({ variant: "secondary", size: "lg", className: "w-full sm:w-auto" })}>
                 前往線上洽談頁
               </a>
             </div>

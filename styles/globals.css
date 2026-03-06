@@ -16,6 +16,8 @@
 html,
 body {
   min-height: 100%;
+  max-width: 100%;
+  overflow-x: clip;
 }
 
 html {
@@ -25,6 +27,7 @@ html {
 body {
   position: relative;
   margin: 0;
+  overflow-x: clip;
   font-family: var(--font-inter), var(--font-noto), system-ui, -apple-system, sans-serif;
   line-height: 1.7;
   color: hsl(var(--text));
@@ -72,7 +75,7 @@ img {
 }
 
 .section-space {
-  padding-block: clamp(56px, 8vw, var(--space-120));
+  padding-block: clamp(52px, 8vw, var(--space-120));
 }
 
 .section-line {

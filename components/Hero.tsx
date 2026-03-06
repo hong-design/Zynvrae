@@ -22,11 +22,11 @@ export function Hero() {
   const animate = canAnimate ? { opacity: 1, y: 0 } : undefined;
 
   return (
-    <section className="section-space relative overflow-visible pb-[96px] pt-[80px] md:pt-[96px]">
+    <section className="section-space relative overflow-visible pb-16 pt-14 sm:pb-20 sm:pt-16 md:pb-[96px] md:pt-[96px]">
       <GlowBG />
 
       <Container>
-        <div className="grid items-start gap-10 lg:grid-cols-12">
+        <div className="grid items-start gap-8 sm:gap-10 lg:grid-cols-12">
           <div className="lg:col-span-8">
             <motion.p
               initial={initial}
@@ -50,7 +50,7 @@ export function Hero() {
               initial={initial}
               animate={animate}
               transition={canAnimate ? { duration: 0.56, ease, delay: 0.14 } : undefined}
-              className="body-text mt-8 max-w-3xl text-muted"
+              className="body-text mt-6 max-w-3xl text-muted sm:mt-8"
             >
               我們專注打造數位服務產品。定位不是一次性交付的外包開發，而是把平台本身作為可以持續經營的產品。
             </motion.p>
@@ -59,25 +59,25 @@ export function Hero() {
               initial={initial}
               animate={animate}
               transition={canAnimate ? { duration: 0.56, ease, delay: 0.16 } : undefined}
-              className="mt-8 flex flex-wrap gap-3"
+              className="mt-6 flex flex-wrap gap-2.5 sm:mt-8 sm:gap-3"
               aria-label="品牌定位"
             >
-              <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">平台型產品開發者</li>
-              <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">平台營運導向</li>
-              <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">長期產品思維</li>
-              <li className="rounded-full border border-border bg-surface-soft px-4 py-2 text-sm text-text">可擴展架構</li>
+              <li className="rounded-full border border-border bg-surface-soft px-3 py-1.5 text-xs text-text sm:px-4 sm:py-2 sm:text-sm">平台型產品開發者</li>
+              <li className="rounded-full border border-border bg-surface-soft px-3 py-1.5 text-xs text-text sm:px-4 sm:py-2 sm:text-sm">平台營運導向</li>
+              <li className="rounded-full border border-border bg-surface-soft px-3 py-1.5 text-xs text-text sm:px-4 sm:py-2 sm:text-sm">長期產品思維</li>
+              <li className="rounded-full border border-border bg-surface-soft px-3 py-1.5 text-xs text-text sm:px-4 sm:py-2 sm:text-sm">可擴展架構</li>
             </motion.ul>
 
             <motion.div
               initial={initial}
               animate={animate}
               transition={canAnimate ? { duration: 0.52, ease, delay: 0.28 } : undefined}
-              className="mt-10 flex flex-wrap gap-4"
+              className="mt-8 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:gap-4"
             >
-              <Link href="/platform" className={buttonVariants({ variant: "primary", size: "lg" })}>
+              <Link href="/platform" className={buttonVariants({ variant: "primary", size: "lg", className: "w-full sm:w-auto" })}>
                 查看平台方向
               </Link>
-              <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "lg" })}>
+              <Link href="/contact" className={buttonVariants({ variant: "secondary", size: "lg", className: "w-full sm:w-auto" })}>
                 洽談合作
               </Link>
             </motion.div>
@@ -88,7 +88,7 @@ export function Hero() {
             animate={animate}
             transition={canAnimate ? { duration: 0.56, ease, delay: 0.22 } : undefined}
             aria-label="核心主張"
-            className="rounded-[14px] border border-border bg-card p-8 lg:col-span-4"
+            className="rounded-[14px] border border-border bg-card p-6 sm:p-7 lg:col-span-4 lg:p-8"
           >
             <p className="eyebrow uppercase text-muted">核心主張</p>
             <ol className="mt-6 space-y-4">
