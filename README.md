@@ -10,6 +10,14 @@
 - Tailwind CSS
 - Framer Motion
 
+## Folder Guide
+
+- `app/`：放頁面、路由、metadata route（例如 `robots`、`sitemap`、`icon`、`opengraph-image`）
+- `components/`：放可重用元件（例如 Navbar、Hero、Card、Footer）
+- `lib/`：放設定、SEO helper、導覽資料、工具函式
+- `styles/`：放全域樣式與 design tokens
+- `public/`：放靜態資產
+
 ## Run
 
 ```bash
@@ -31,12 +39,18 @@ Windows 建議直接用：
 cmd /c npm run dev
 ```
 
+不要把 README 或聊天室裡的 ``` 一起貼進 PowerShell，PowerShell 會把它當成指令，然後出現 `無法辨識 '``'`。
+
 ## Build
 
 ```bash
 npm run build
 npm run start
 ```
+
+`npm run start` 目前是用靜態伺服器預覽 `out/`，不是 `next start`。
+
+原因：這個專案在 production 使用 `output: export`，所以正式輸出是靜態網站。
 
 ## Recent Updates
 
@@ -45,6 +59,7 @@ npm run start
 - 手機導覽升級為 overlay 面板：加入背景遮罩、關閉鍵、目前頁面高亮、`Esc` 關閉與背景滾動鎖定。
 - 修正手機版頁面底部仍可左右拖動的問題，已在全域樣式收斂 `overflow-x`。
 - SEO/OG 完整化：加入共用 metadata helper、manifest、icon、apple-icon、twitter-image。
+- SEO 再補強：加入 JSON-LD 結構化資料（Organization、WebSite、WebPage、BreadcrumbList）。
 - 相容路由 `/about` `/platforms` `/principles` `/updates` 已改為 `noindex`，避免重複內容競爭。
 - 光暈層已改為全站共用元件，降低邊緣切痕感。
 - Theme toggle 補強 `aria-label`、`aria-pressed` 與 focus ring。
@@ -55,7 +70,7 @@ npm run start
 ## Main Edit Map
 
 - 首頁內容：`app/page.tsx`
-- 內頁內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
+- 四個主要內頁內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
 - 全站框架（SEO/字體/Navbar/Footer）：`app/layout.tsx`
 - 導覽列項目：`lib/navigation.ts`
 - 視覺 token：`styles/tokens.css`
@@ -86,11 +101,13 @@ npm run start
 ## 常見修改位置
 
 - 首頁文案/區塊：`app/page.tsx`
+- `Platform / Products / Company / Contact` 頁面內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
 - 導覽列：`components/Navbar.tsx`
 - Hero 視覺：`components/Hero.tsx`
 - 內頁 Hero 視覺：`components/site/PageHero.tsx`
 - 全站光暈層：`components/GlowBG.tsx`
 - SEO/OG 設定：`lib/seo.ts` `lib/site.ts` `app/layout.tsx`
+- 結構化資料：`lib/structured-data.ts` `components/seo/JsonLd.tsx`
 - 社群分享圖：`lib/og.tsx` `app/opengraph-image.tsx` `app/twitter-image.tsx`
 - App 圖示與 PWA metadata：`app/icon.tsx` `app/apple-icon.tsx` `app/manifest.ts`
 - Footer：`components/layout/Footer.tsx`
@@ -138,6 +155,11 @@ cmd /c deploy.bat
   - `/icon`
   - `/apple-icon`
   - `/manifest.webmanifest`
+- 已加入 JSON-LD：
+  - `Organization`
+  - `WebSite`
+  - `WebPage`
+  - `BreadcrumbList`
 
 ## UI Details
 

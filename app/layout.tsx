@@ -4,7 +4,9 @@ import type { ReactNode } from "react";
 import { Footer } from "@/components/layout/Footer";
 import { Navbar } from "@/components/Navbar";
 import { ProgressBar } from "@/components/ProgressBar";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { defaultKeywords, siteConfig } from "@/lib/site";
+import { getSiteSchemas } from "@/lib/structured-data";
 import "./globals.css";
 
 const inter = Inter({
@@ -105,10 +107,13 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
+  const siteSchemas = getSiteSchemas();
+
   return (
     <html lang="zh-Hant" data-theme="dark" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <JsonLd data={siteSchemas} />
       </head>
       <body className={`${inter.variable} ${notoSansTc.variable} font-sans antialiased`}>
         <a

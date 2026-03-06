@@ -1,11 +1,13 @@
 ﻿import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { Card } from "@/components/ui/Card";
 import { Hero } from "@/components/Hero";
 import { Section } from "@/components/ui/Section";
 import { buttonVariants } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { buildMetadata } from "@/lib/seo";
+import { getWebPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "平台型數位平台開發",
@@ -15,8 +17,15 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function HomePage() {
+  const pageSchema = getWebPageSchema({
+    title: "平台型數位平台開發",
+    description: "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。",
+    path: "/"
+  });
+
   return (
     <>
+      <JsonLd data={pageSchema} />
       <Hero />
 
       <Section>

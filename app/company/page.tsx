@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { buildMetadata } from "@/lib/seo";
+import { getBreadcrumbSchema, getWebPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "公司資訊",
@@ -12,8 +14,21 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function CompanyPage() {
+  const schemas = [
+    getWebPageSchema({
+      title: "公司資訊",
+      description: "Zynvrae 以團隊形式運作，專注平台型數位平台開發，並規劃正式法人與組織結構。",
+      path: "/company"
+    }),
+    getBreadcrumbSchema([
+      { name: "首頁", path: "/" },
+      { name: "公司資訊", path: "/company" }
+    ])
+  ];
+
   return (
     <>
+      <JsonLd data={schemas} />
       <Container>
         <PageHero
           kicker="COMPANY POSITIONING"
@@ -91,4 +106,3 @@ export default function CompanyPage() {
     </>
   );
 }
-

@@ -47,7 +47,8 @@ export function ThemeToggle({ className }: { className?: string }) {
         className
       )}
     >
-      {theme === "dark" ? "Light" : "Dark"}
+      {theme === "dark" ? "淺色" : "深色"}
     </button>
   );
 }
+

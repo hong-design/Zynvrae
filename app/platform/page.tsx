@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { buildMetadata } from "@/lib/seo";
+import { getBreadcrumbSchema, getWebPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "平台方向",
@@ -12,8 +14,21 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function PlatformPage() {
+  const schemas = [
+    getWebPageSchema({
+      title: "平台方向",
+      description: "Zynvrae 平台方向：打造可營運、可擴展、可治理的多角色數位平台。",
+      path: "/platform"
+    }),
+    getBreadcrumbSchema([
+      { name: "首頁", path: "/" },
+      { name: "平台方向", path: "/platform" }
+    ])
+  ];
+
   return (
     <>
+      <JsonLd data={schemas} />
       <Container>
         <PageHero
           kicker="PLATFORM PRODUCT"
@@ -109,4 +124,3 @@ export default function PlatformPage() {
     </>
   );
 }
-

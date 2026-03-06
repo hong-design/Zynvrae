@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Reveal, Stagger, StaggerItem } from "@/components/motion/Reveal";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { PageHero } from "@/components/site/PageHero";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { buildMetadata } from "@/lib/seo";
+import { getBreadcrumbSchema, getWebPageSchema } from "@/lib/structured-data";
 
 export const metadata: Metadata = buildMetadata({
   title: "產品狀態",
@@ -13,8 +15,21 @@ export const metadata: Metadata = buildMetadata({
 });
 
 export default function ProductsPage() {
+  const schemas = [
+    getWebPageSchema({
+      title: "產品狀態",
+      description: "Zynvrae 產品與平台目前處於開發與驗證階段，未來將以子品牌或獨立產品形式推出。",
+      path: "/products"
+    }),
+    getBreadcrumbSchema([
+      { name: "首頁", path: "/" },
+      { name: "產品狀態", path: "/products" }
+    ])
+  ];
+
   return (
     <>
+      <JsonLd data={schemas} />
       <Container>
         <PageHero
           kicker="PRODUCT STATUS"
@@ -81,4 +96,3 @@ export default function ProductsPage() {
     </>
   );
 }
-
