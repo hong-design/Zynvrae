@@ -13,7 +13,7 @@ export function getSiteSchemas() {
     url: siteConfig.url,
     email: siteConfig.email,
     logo: `${siteConfig.url}/icon.svg`,
-    image: `${siteConfig.url}/opengraph-image`
+    image: `${siteConfig.url}${siteConfig.ogImage}`
   };
 
   const website = {
