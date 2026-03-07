@@ -4,8 +4,8 @@ export const siteConfig = {
   description:
     "Zynvrae 以平台型數位平台開發為核心，打造可長期營運、可擴展的數位服務產品。",
   url: "https://zynvrae.com",
-  ogImage: "/images/founder.svg",
-  twitterImage: "/images/founder.svg",
+  ogImage: "/icon.svg",
+  twitterImage: "/icon.svg",
   email: "zynvrae@gmail.com",
   links: {
     x: "#",

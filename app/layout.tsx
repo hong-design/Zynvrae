@@ -85,8 +85,6 @@ export const metadata: Metadata = {
     images: [
       {
         url: siteConfig.ogImage,
-        width: 1200,
-        height: 630,
         alt: "Zynvrae | 平台型數位平台開發"
       }
     ]
