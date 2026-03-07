@@ -33,6 +33,9 @@ Windows 建議直接用：
 .\preview.bat
 ```
 
+`preview.bat` 會先清掉佔用 `3000` port 的舊程序，再啟動新的預覽伺服器。
+另外也會先清掉 `.next/cache/webpack`，避免 Windows 上常見的 dev cache 損壞。
+
 如果 PowerShell 擋住 `npm.ps1`，不要直接打 `npm run dev`，改用：
 
 ```bat
@@ -51,6 +54,12 @@ npm run start
 `npm run start` 目前是用靜態伺服器預覽 `out/`，不是 `next start`。
 
 原因：這個專案在 production 使用 `output: export`，所以正式輸出是靜態網站。
+
+### Dev Issues On Windows
+
+- 如果你看到 `GET /icon 500`、`GET /manifest.webmanifest 500`，通常不是頁面內容壞掉，而是本機 dev server 或 cache 狀態髒掉。
+- 如果你看到 `webpack.cache.PackFileCacheStrategy ... ENOENT ... rename`，通常是 `.next/cache/webpack` 快取損壞。
+- 最穩定的做法是直接重跑 `.\preview.bat`，它會先清掉舊程序與 webpack cache。
 
 ## Recent Updates
 

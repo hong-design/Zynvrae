@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent"
   },
   icons: {
-    icon: [{ url: "/icon", type: "image/png", sizes: "512x512" }],
-    apple: [{ url: "/apple-icon", type: "image/png", sizes: "512x512" }],
-    shortcut: ["/icon"]
+    icon: [{ url: "/icon.svg", type: "image/svg+xml", sizes: "any" }],
+    apple: [{ url: "/apple-icon.svg", type: "image/svg+xml", sizes: "any" }],
+    shortcut: ["/icon.svg"]
   },
   robots: {
     index: true,

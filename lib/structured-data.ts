@@ -12,7 +12,7 @@ export function getSiteSchemas() {
     name: siteConfig.name,
     url: siteConfig.url,
     email: siteConfig.email,
-    logo: `${siteConfig.url}/icon`,
+    logo: `${siteConfig.url}/icon.svg`,
     image: `${siteConfig.url}/opengraph-image`
   };
 

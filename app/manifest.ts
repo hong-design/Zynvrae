@@ -13,14 +13,14 @@ export default function manifest(): MetadataRoute.Manifest {
     lang: "zh-Hant",
     icons: [
       {
-        src: "/icon",
-        sizes: "512x512",
-        type: "image/png"
+        src: "/icon.svg",
+        sizes: "any",
+        type: "image/svg+xml"
       },
       {
-        src: "/apple-icon",
-        sizes: "512x512",
-        type: "image/png",
+        src: "/apple-icon.svg",
+        sizes: "any",
+        type: "image/svg+xml",
         purpose: "any"
       }
     ]

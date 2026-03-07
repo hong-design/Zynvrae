@@ -1,4 +1,4 @@
-﻿export const siteConfig = {
+export const siteConfig = {
   name: "Zynvrae",
   shortName: "Zynvrae",
   description:
