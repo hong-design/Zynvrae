@@ -4,6 +4,7 @@
 # next.js
 /.next/
 /out/
+/.wrangler/
 
 # logs
 npm-debug.log*

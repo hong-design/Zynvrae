@@ -1,0 +1,6 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zynvrae",
+  "pages_build_output_dir": "out",
+  "compatibility_date": "2026-03-07"
+}

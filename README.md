@@ -17,6 +17,7 @@
 - `lib/`：放設定、SEO helper、導覽資料、工具函式
 - `styles/`：放全域樣式與 design tokens
 - `public/`：放靜態資產
+- `wrangler.jsonc`：Cloudflare Pages 設定
 
 ## Run
 
@@ -64,6 +65,7 @@ npm run start
 ## Recent Updates
 
 - 新增 `preview.bat`，Windows 可直接用 `.\preview.bat` 啟動本機預覽。
+- 新增 `wrangler.jsonc`、`public/_headers`、`deploy-cloudflare.bat`，可改走 Cloudflare Pages Free。
 - 手機版重新調整：Hero 間距縮合、CTA 改為直向滿寬、卡片內距下修、Navbar 高度改為 `64px`。
 - 手機導覽升級為 overlay 面板：加入背景遮罩、關閉鍵、目前頁面高亮、`Esc` 關閉與背景滾動鎖定。
 - 修正手機版頁面底部仍可左右拖動的問題，已在全域樣式收斂 `overflow-x`。
@@ -90,10 +92,12 @@ npm run start
 
 - `app/layout.tsx`
 - `app/manifest.ts`
-- `app/icon.tsx`
-- `app/apple-icon.tsx`
 - `app/page.tsx`
 - `app/twitter-image.tsx`
+- `public/icon.svg`
+- `public/apple-icon.svg`
+- `public/_headers`
+- `wrangler.jsonc`
 - `components/Navbar.tsx`
 - `components/Hero.tsx`
 - `components/site/PageHero.tsx`
@@ -118,13 +122,56 @@ npm run start
 - SEO/OG 設定：`lib/seo.ts` `lib/site.ts` `app/layout.tsx`
 - 結構化資料：`lib/structured-data.ts` `components/seo/JsonLd.tsx`
 - 社群分享圖：`lib/og.tsx` `app/opengraph-image.tsx` `app/twitter-image.tsx`
-- App 圖示與 PWA metadata：`app/icon.tsx` `app/apple-icon.tsx` `app/manifest.ts`
+- App 圖示與 PWA metadata：`public/icon.svg` `public/apple-icon.svg` `app/manifest.ts`
 - Footer：`components/layout/Footer.tsx`
 - 導覽項目文字：`lib/navigation.ts`
 - 色票與字級 token：`styles/tokens.css`
 - 全站效果（噪點、focus、divider）：`styles/globals.css`
+- Cloudflare Pages 設定：`wrangler.jsonc` `public/_headers`
 
 ## Deploy
+
+### Cloudflare Pages Free
+
+這個專案已經是靜態輸出模式，Cloudflare Pages 直接使用 `out/` 即可。
+
+Cloudflare Dashboard 設定：
+
+1. Workers & Pages -> Create -> Pages -> Connect to Git
+2. 選 GitHub repo：`hong-design/Zynvrae`
+3. Framework preset：`None`
+4. Build command：`npm run build`
+5. Build output directory：`out`
+6. Root directory：`/`
+7. Node.js version：`20`
+
+Cloudflare 接上 GitHub 後，部署流程會變成：
+
+```bat
+.\deploy-cloudflare.bat
+```
+
+或直接：
+
+```bat
+git add -A
+git commit -m "update site"
+git push origin main
+```
+
+Cloudflare Pages 會在 `main` 更新後自動建置並發布。
+
+如果想用 CLI 直接上傳：
+
+```bat
+npx wrangler login
+npx wrangler pages project create zynvrae
+npx wrangler pages deploy out --project-name=zynvrae
+```
+
+目前 `deploy.bat` 仍保留給 GitHub Pages 舊流程使用。等 Cloudflare 已經接管 `zynvrae.com` 後，再移除 GitHub Pages 舊流程最穩。
+
+### GitHub Pages Legacy
 
 Windows 可直接執行：
 
@@ -161,8 +208,8 @@ cmd /c deploy.bat
 - 已補齊 Open Graph / Twitter Card / icons / manifest：
   - `/opengraph-image`
   - `/twitter-image`
-  - `/icon`
-  - `/apple-icon`
+  - `/icon.svg`
+  - `/apple-icon.svg`
   - `/manifest.webmanifest`
 - 已加入 JSON-LD：
   - `Organization`
