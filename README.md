@@ -1,10 +1,10 @@
-﻿# Zynvrae Homepage UI Upgrade
+# Zynvrae
 
-以現有首頁文案與區塊順序為基礎，進行純 UI 風格升級（Next.js App Router + Tailwind + Framer Motion）。
+Zynvrae 官網前端專案。技術堆疊為 `Next.js App Router + Tailwind CSS + Framer Motion`，正式部署目標為 `Cloudflare Pages Free`。
 
 ## Stack
 
-- Next.js 14 (App Router)
+- Next.js 14
 - React 18
 - TypeScript
 - Tailwind CSS
@@ -12,21 +12,47 @@
 
 ## Folder Guide
 
-- `app/`：放頁面、路由、metadata route（例如 `robots`、`sitemap`、`icon`、`opengraph-image`）
-- `components/`：放可重用元件（例如 Navbar、Hero、Card、Footer）
-- `lib/`：放設定、SEO helper、導覽資料、工具函式
-- `styles/`：放全域樣式與 design tokens
-- `public/`：放靜態資產
+- `app/`：頁面、路由、metadata route，例如 `robots`、`sitemap`、`manifest`、`opengraph-image`
+- `components/`：可重用元件，例如 Navbar、Hero、Card、Footer
+- `lib/`：設定、SEO helper、導覽資料、工具函式
+- `styles/`：全域樣式與 design tokens
+- `public/`：靜態資產，例如 icon、圖片、`_headers`
 - `wrangler.jsonc`：Cloudflare Pages 設定
 
-## Run
+## Common Edit Map
+
+- 首頁內容：[app/page.tsx](app/page.tsx)
+- `Platform / Products / Company / Contact` 內容：
+  - [app/platform/page.tsx](app/platform/page.tsx)
+  - [app/products/page.tsx](app/products/page.tsx)
+  - [app/company/page.tsx](app/company/page.tsx)
+  - [app/contact/page.tsx](app/contact/page.tsx)
+- 導覽列樣式：[components/Navbar.tsx](components/Navbar.tsx)
+- 導覽列文字：[lib/navigation.ts](lib/navigation.ts)
+- Hero 視覺：[components/Hero.tsx](components/Hero.tsx)
+- 內頁 Hero 視覺：[components/site/PageHero.tsx](components/site/PageHero.tsx)
+- 全站光暈層：[components/GlowBG.tsx](components/GlowBG.tsx)
+- 全站樣式：[styles/globals.css](styles/globals.css)
+- 色彩與字級 token：[styles/tokens.css](styles/tokens.css)
+- SEO/OG 設定：
+  - [app/layout.tsx](app/layout.tsx)
+  - [lib/seo.ts](lib/seo.ts)
+  - [lib/site.ts](lib/site.ts)
+  - [lib/structured-data.ts](lib/structured-data.ts)
+
+## Local Preview
+
+安裝套件：
 
 ```bash
 npm i
-npm run dev
 ```
 
-預覽網址：`http://localhost:3000`
+開發模式：
+
+```bash
+npm run dev
+```
 
 Windows 建議直接用：
 
@@ -34,124 +60,71 @@ Windows 建議直接用：
 .\preview.bat
 ```
 
-`preview.bat` 會先清掉佔用 `3000` port 的舊程序，再啟動新的預覽伺服器。
-另外也會先清掉 `.next/cache/webpack`，避免 Windows 上常見的 dev cache 損壞。
+預覽網址：`http://localhost:3000`
 
-如果 PowerShell 擋住 `npm.ps1`，不要直接打 `npm run dev`，改用：
+`preview.bat` 會先：
+
+- 清掉占用 `3000` port 的舊程序
+- 清掉 `.next/cache/webpack`
+- 再啟動新的開發伺服器
+
+如果 PowerShell 擋住 `npm.ps1`，改用：
 
 ```bat
 cmd /c npm run dev
 ```
 
-不要把 README 或聊天室裡的 ``` 一起貼進 PowerShell，PowerShell 會把它當成指令，然後出現 `無法辨識 '``'`。
-
-## Build
+## Production Build
 
 ```bash
 npm run build
 npm run start
 ```
 
-`npm run start` 目前是用靜態伺服器預覽 `out/`，不是 `next start`。
+`npm run start` 是本機用靜態伺服器預覽 `out/`，不是 `next start`。  
+原因是這個專案在 production 使用 `output: export`，正式輸出為靜態網站。
 
-原因：這個專案在 production 使用 `output: export`，所以正式輸出是靜態網站。
+## Cloudflare Pages Deploy
 
-### Dev Issues On Windows
+### 一次性設定
 
-- 如果你看到 `GET /icon 500`、`GET /manifest.webmanifest 500`，通常不是頁面內容壞掉，而是本機 dev server 或 cache 狀態髒掉。
-- 如果你看到 `webpack.cache.PackFileCacheStrategy ... ENOENT ... rename`，通常是 `.next/cache/webpack` 快取損壞。
-- 最穩定的做法是直接重跑 `.\preview.bat`，它會先清掉舊程序與 webpack cache。
+1. 到 Cloudflare Dashboard。
+2. 如果 `zynvrae.com` 還沒有加入 Cloudflare，先 `Add a site`。
+3. 若你要把主網域 `zynvrae.com` 直接掛到 Pages，請先把網域 nameservers 改到 Cloudflare。
+4. 進入 `Workers & Pages`。
+5. 選 `Create application` -> `Pages` -> `Import an existing Git repository`。
+6. 連接 GitHub repo：`hong-design/Zynvrae`。
+7. Build settings 請設成：
+   - Framework preset: `Next.js (Static HTML Export)`
+   - Production branch: `main`
+   - Build command: `npm run build`
+   - Build output directory: `out`
+8. 建立專案後，Cloudflare 會先給你一個 `*.pages.dev` 網址。
 
-## Recent Updates
+### 接上正式網域 `zynvrae.com`
 
-- 新增 `preview.bat`，Windows 可直接用 `.\preview.bat` 啟動本機預覽。
-- 新增 `wrangler.jsonc`、`public/_headers`、`deploy-cloudflare.bat`，可改走 Cloudflare Pages Free。
-- 手機版重新調整：Hero 間距縮合、CTA 改為直向滿寬、卡片內距下修、Navbar 高度改為 `64px`。
-- 手機導覽升級為 overlay 面板：加入背景遮罩、關閉鍵、目前頁面高亮、`Esc` 關閉與背景滾動鎖定。
-- 修正手機版頁面底部仍可左右拖動的問題，已在全域樣式收斂 `overflow-x`。
-- SEO/OG 完整化：加入共用 metadata helper、manifest、icon、apple-icon、twitter-image。
-- SEO 再補強：加入 JSON-LD 結構化資料（Organization、WebSite、WebPage、BreadcrumbList）。
-- 相容路由 `/about` `/platforms` `/principles` `/updates` 已改為 `noindex`，避免重複內容競爭。
-- 光暈層已改為全站共用元件，降低邊緣切痕感。
-- Theme toggle 補強 `aria-label`、`aria-pressed` 與 focus ring。
-- Scroll progress bar 在 `prefers-reduced-motion` 下改為更穩定的行為。
-- SEO canonical 改成每頁獨立設定，不再全部指向首頁。
-- `deploy.bat` 已支援 `git pull --rebase --autostash`，並自動同步靜態輸出到 GitHub Pages 根目錄。
+1. 打開你的 Pages 專案。
+2. 進入 `Custom domains`。
+3. 選 `Set up a domain`。
+4. 加入：
+   - `zynvrae.com`
+   - `www.zynvrae.com`
+5. 等待 SSL 與 DNS 生效。
 
-## Main Edit Map
+備註：
 
-- 首頁內容：`app/page.tsx`
-- 四個主要內頁內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
-- 全站框架（SEO/字體/Navbar/Footer）：`app/layout.tsx`
-- 導覽列項目：`lib/navigation.ts`
-- 視覺 token：`styles/tokens.css`
-- 全域樣式（噪點/分隔線/focus）：`styles/globals.css`
-- 手機版主要調整點：`components/Hero.tsx` `components/site/PageHero.tsx` `components/ui/Card.tsx` `components/Navbar.tsx`
+- `zynvrae.com` 是 apex domain。依 Cloudflare 官方文件，apex domain 要先把 zone 與 nameservers 放到 Cloudflare。
+- 如果你只想先測試，也可以先只掛 `www.zynvrae.com`，再之後補 apex。
 
-## Key Files
+### 之後每次部署
 
-- `app/layout.tsx`
-- `app/manifest.ts`
-- `app/page.tsx`
-- `app/twitter-image.tsx`
-- `public/icon.svg`
-- `public/apple-icon.svg`
-- `public/_headers`
-- `wrangler.jsonc`
-- `components/Navbar.tsx`
-- `components/Hero.tsx`
-- `components/site/PageHero.tsx`
-- `components/GlowBG.tsx`
-- `components/ProgressBar.tsx`
-- `components/ThemeToggle.tsx`
-- `components/layout/Footer.tsx`
-- `components/ui/Card.tsx`
-- `components/ui/Section.tsx`
-- `styles/globals.css`
-- `styles/tokens.css`
-- `tailwind.config.js`
-
-## 常見修改位置
-
-- 首頁文案/區塊：`app/page.tsx`
-- `Platform / Products / Company / Contact` 頁面內容：`app/platform/page.tsx` `app/products/page.tsx` `app/company/page.tsx` `app/contact/page.tsx`
-- 導覽列：`components/Navbar.tsx`
-- Hero 視覺：`components/Hero.tsx`
-- 內頁 Hero 視覺：`components/site/PageHero.tsx`
-- 全站光暈層：`components/GlowBG.tsx`
-- SEO/OG 設定：`lib/seo.ts` `lib/site.ts` `app/layout.tsx`
-- 結構化資料：`lib/structured-data.ts` `components/seo/JsonLd.tsx`
-- 社群分享圖：`lib/og.tsx` `app/opengraph-image.tsx` `app/twitter-image.tsx`
-- App 圖示與 PWA metadata：`public/icon.svg` `public/apple-icon.svg` `app/manifest.ts`
-- Footer：`components/layout/Footer.tsx`
-- 導覽項目文字：`lib/navigation.ts`
-- 色票與字級 token：`styles/tokens.css`
-- 全站效果（噪點、focus、divider）：`styles/globals.css`
-- Cloudflare Pages 設定：`wrangler.jsonc` `public/_headers`
-
-## Deploy
-
-### Cloudflare Pages Free
-
-這個專案已經是靜態輸出模式，Cloudflare Pages 直接使用 `out/` 即可。
-
-Cloudflare Dashboard 設定：
-
-1. Workers & Pages -> Create -> Pages -> Connect to Git
-2. 選 GitHub repo：`hong-design/Zynvrae`
-3. Framework preset：`None`
-4. Build command：`npm run build`
-5. Build output directory：`out`
-6. Root directory：`/`
-7. Node.js version：`20`
-
-Cloudflare 接上 GitHub 後，部署流程會變成：
+日常部署只要把原始碼 push 到 GitHub：
 
 ```bat
-.\deploy-cloudflare.bat
+.\deploy.bat
 ```
 
-或直接：
+或手動：
 
 ```bat
 git add -A
@@ -159,9 +132,11 @@ git commit -m "update site"
 git push origin main
 ```
 
-Cloudflare Pages 會在 `main` 更新後自動建置並發布。
+Cloudflare Pages 看到 `main` 有新 commit 後，會自動建置並發布。
 
-如果想用 CLI 直接上傳：
+## Cloudflare Direct Upload
+
+如果你不想走 Git 自動部署，也可以手動上傳：
 
 ```bat
 npx wrangler login
@@ -169,48 +144,38 @@ npx wrangler pages project create zynvrae
 npx wrangler pages deploy out --project-name=zynvrae
 ```
 
-目前 `deploy.bat` 仍保留給 GitHub Pages 舊流程使用。等 Cloudflare 已經接管 `zynvrae.com` 後，再移除 GitHub Pages 舊流程最穩。
+但這個專案比較適合用 Git integration。日常維護最簡單。
 
-### GitHub Pages Legacy
+## Cloudflare Deploy Checklist
 
-Windows 可直接執行：
+1. 本機先確認可編譯：`npm run build`
+2. 確認 Pages 專案已連到 GitHub repo
+3. 執行 `.\deploy.bat`
+4. 到 Cloudflare Dashboard 看 build log 是否完成
+5. 若剛切 DNS，等數分鐘到數小時不等
+6. 用 `Ctrl + F5` 強制重整
 
-```bat
-.\deploy.bat
-```
+## Dev Issues On Windows
 
-若 PowerShell 無法執行，改用：
-
-```bat
-cmd /c deploy.bat
-```
-
-流程包含：`git pull --rebase --autostash` -> `npm run build` -> 同步 `out/*` 到 root -> `git add/commit` -> `git push`
-
-### Deploy Checklist
-
-1. 先確認本機可編譯：`npm run build`
-2. 執行 `.\deploy.bat`
-3. 等 GitHub Pages/CDN 1-3 分鐘
-4. 瀏覽器用 `Ctrl + F5` 強制重整
-
-### If You See Plain Text (No CSS)
-
-- 通常是舊快取或部署尚未完成，不是 React 壞掉。
-- 先看是否能開啟 `https://zynvrae.com/_next/static/css/...css`
-- 若 CSS 是 404，重跑 `.\deploy.bat`，並確認 push 成功。
+- 如果你看到 `GET /icon 500`、`GET /manifest.webmanifest 500`，通常是本機 dev server 或 cache 狀態髒掉，不是頁面內容壞掉。
+- 如果你看到 `webpack.cache.PackFileCacheStrategy ... ENOENT ... rename`，通常是 `.next/cache/webpack` 快取損壞。
+- 最穩定的做法是直接重跑 `.\preview.bat`。
 
 ## SEO Notes
 
-- canonical 已改為「每頁獨立設定」：
-  - `/` `/platform` `/products` `/company` `/contact`
-- 相容路由 `/about` `/platforms` `/principles` `/updates` 已設為 `noindex, follow`，並指向正式 canonical。
-- 已補齊 Open Graph / Twitter Card / icons / manifest：
-  - `/opengraph-image`
-  - `/twitter-image`
-  - `/icon.svg`
-  - `/apple-icon.svg`
-  - `/manifest.webmanifest`
+- canonical 已改為每頁獨立設定：
+  - `/`
+  - `/platform`
+  - `/products`
+  - `/company`
+  - `/contact`
+- 相容路由 `/about` `/platforms` `/principles` `/updates` 已設為 `noindex, follow`
+- 已補齊：
+  - Open Graph
+  - Twitter Card
+  - `manifest.webmanifest`
+  - `public/icon.svg`
+  - `public/apple-icon.svg`
 - 已加入 JSON-LD：
   - `Organization`
   - `WebSite`
@@ -230,14 +195,14 @@ cmd /c deploy.bat
 
 ## Mobile Notes
 
-- Hero 行動版會自動改成 CTA 直向堆疊（按鈕滿寬）。
-- Card 在手機使用較小內距（`p-6`），平板以上再放大。
-- Section 標題字級與段落間距已針對手機下修。
-- 手機導覽列高度改為 `64px`，並保留觸控安全區。
-- 全站已限制行動版橫向溢出，避免底部出現可左右拖動。
+- Hero 行動版會自動改成 CTA 直向堆疊
+- Card 在手機使用較小內距，平板以上再放大
+- Section 標題字級與段落間距已針對手機下修
+- 手機導覽列高度改為 `64px`
+- 全站已限制行動版橫向溢出，避免底部出現可左右拖動
 
 ## Accessibility
 
 - Keyboard focus-visible
 - prefers-reduced-motion support
-- Color contrast optimized for dark/light themes
+- Dark/light theme contrast optimized
